@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+import org.example.ENTYTI.USER.Role;
 import org.mindrot.jbcrypt.BCrypt;
 import org.example.ENTYTI.USER.User;
 import org.example.VIEW.BOSS.HomeBossJFrame;
@@ -283,12 +284,11 @@ public class HomeJFrame extends javax.swing.JFrame {
     private void QuenMatKhauButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuenMatKhauButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new HomeUserJFrame().setVisible(true);
+        new ForgotPassJFrame().setVisible(true);
     }//GEN-LAST:event_QuenMatKhauButtonActionPerformed
 
 
     //LOGIN==============================================================================================================
-
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
         String phone = UserNameTxt.getText();
@@ -305,16 +305,27 @@ public class HomeJFrame extends javax.swing.JFrame {
             return;
         }
         char[] passwordChar = PasswordTXT.getPassword();
-        if(BCrypt.checkpw(String.valueOf(passwordChar), user.getPassword())){
+        if(!BCrypt.checkpw(String.valueOf(passwordChar), user.getPassword())){
             JOptionPane.showMessageDialog(this,"Mật khẩu không chính xác !",
                     "Thông báo",JOptionPane.OK_OPTION);
             return;
         }
         Arrays.fill(passwordChar,'\0');
+        if(user.getRole() == Role.ADMIN){
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this,"Xin Chào ADMIN",
+                    "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
+            this.setVisible(false);
+            new HomeBossJFrame().setVisible(true);
+            return;
+        }
+        
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
         JOptionPane.showMessageDialog(this,"Đăng nhập thành công",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
         this.setVisible(false);
-        new HomeBossJFrame().setVisible(true);
+        new HomeUserJFrame(phone).setVisible(true);
+
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     /**
