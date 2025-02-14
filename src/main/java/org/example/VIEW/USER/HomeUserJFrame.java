@@ -4,7 +4,7 @@
  */
 package org.example.VIEW.USER;
 
-import org.example.VIEW.HomeJFrame;
+import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 
 import javax.swing.*;
 

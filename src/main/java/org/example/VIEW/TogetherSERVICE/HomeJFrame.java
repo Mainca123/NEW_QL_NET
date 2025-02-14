@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example.VIEW;
+package org.example.VIEW.TogetherSERVICE;
 
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Array;

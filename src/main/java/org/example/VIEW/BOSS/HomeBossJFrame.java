@@ -5,7 +5,7 @@
 package org.example.VIEW.BOSS;
 
 import javax.swing.JOptionPane;
-import org.example.VIEW.HomeJFrame;
+import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 
 
 /**

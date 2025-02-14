@@ -3,7 +3,7 @@ package org.example.DAO;
 import jakarta.persistence.EntityManager;
 import org.example.ENTYTI.USER.Role;
 import org.example.ENTYTI.USER.User;
-import org.example.VIEW.HomeJFrame;
+import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
