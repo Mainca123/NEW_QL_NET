@@ -6,8 +6,19 @@ package org.example.VIEW.BOSS;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import org.example.ENTITY.Computer.Computer;
+import org.example.ENTITY.Computer.Status;
+import org.example.ENTITY.USER.Role;
+import org.example.ENTITY.USER.User;
+import org.example.SERVICE.ComputerService;
+import org.example.SERVICE.UserService;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.example.VIEW.TogetherSERVICE.SetInfoJFrame;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.ArrayList;
 
 
 /**
@@ -21,6 +32,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
      */
     public HomeBossJFrame() {
         initComponents();
+    }
+    public HomeBossJFrame(String phone) {
+        initComponents();
+        this.PhoneNow.setText(phone);
     }
 
     /**
@@ -56,6 +71,25 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         AC_Option = new javax.swing.JOptionPane();
+        PhoneNow = new javax.swing.JTextField();
+        AddComputerDailog = new javax.swing.JDialog();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        ExitAddComputerButton = new javax.swing.JButton();
+        YesAddComputerButton = new javax.swing.JButton();
+        AddNameComputerTXT = new javax.swing.JTextField();
+        AddStatusComputerTXT = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        SetComputerDailog = new javax.swing.JDialog();
+        jLabel29 = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        ExitSetComputerButton = new javax.swing.JButton();
+        YesSetComputerButton = new javax.swing.JButton();
+        SetNameComputerTXT = new javax.swing.JTextField();
+        SetStatusComputerTXT = new javax.swing.JComboBox<>();
         AdminPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -64,46 +98,50 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        AddUesrButton = new javax.swing.JButton();
+        SetAdminButton = new javax.swing.JButton();
         LogoutButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAccount = new javax.swing.JTable();
+        TableAccount = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        TxtFindPhone = new javax.swing.JTextField();
-        FindButton = new javax.swing.JButton();
+        FindPhoneTXT = new javax.swing.JTextField();
+        FindUserButton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        TxtDeletePhone = new javax.swing.JTextField();
+        DeletePhoneTXT = new javax.swing.JTextField();
         DeleteUserButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        RefreshAcconutButton = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        TxtFindPhone1 = new javax.swing.JTextField();
-        InAddButton = new javax.swing.JButton();
+        FindAddPhoneTXT = new javax.swing.JTextField();
+        InAddUserButton = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        TxtFindPhone2 = new javax.swing.JTextField();
-        InSetButton = new javax.swing.JButton();
+        FindSetPhoneTXT = new javax.swing.JTextField();
+        InSetUserButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableComuper = new javax.swing.JTable();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        TxtComputerName = new javax.swing.JTextField();
-        ShutDownButton = new javax.swing.JButton();
         ShutDownALLButton = new javax.swing.JButton();
+        InAddComputerButton = new javax.swing.JButton();
+        RefeshComputerButton = new javax.swing.JButton();
+        Jp = new javax.swing.JPanel();
+        InSetComputerButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        NameComputerTXT = new javax.swing.JTextField();
+        DeleteComputerButton = new javax.swing.JButton();
+        ShutDownComputerButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableOder = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
+        RefeshOderButton = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -112,7 +150,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         SumMoney = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        CompleteButton = new javax.swing.JButton();
+        CompleteOderButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -326,6 +364,212 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         AC_Option.setBackground(new java.awt.Color(238, 254, 254));
         AC_Option.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoTichXanh.png"))); // NOI18N
 
+        PhoneNow.setText("jTextField1");
+
+        AddComputerDailog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        AddComputerDailog.setModal(true);
+        AddComputerDailog.setResizable(false);
+        AddComputerDailog.setSize(new java.awt.Dimension(490, 270));
+
+        jPanel17.setBackground(new java.awt.Color(241, 254, 254));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel27.setText("Tên máy");
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel28.setText("Trạng thái");
+
+        ExitAddComputerButton.setText("Hủy");
+        ExitAddComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitAddComputerButtonActionPerformed(evt);
+            }
+        });
+
+        YesAddComputerButton.setText("Thêm");
+        YesAddComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesAddComputerButtonActionPerformed(evt);
+            }
+        });
+
+        AddNameComputerTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        AddStatusComputerTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AddStatusComputerTXT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chưa sử dụng", "Hỏng" }));
+        AddStatusComputerTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddStatusComputerTXTActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddNameComputerTXT)
+                            .addComponent(AddStatusComputerTXT, 0, 335, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(YesAddComputerButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExitAddComputerButton)))
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(AddNameComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(AddStatusComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ExitAddComputerButton)
+                    .addComponent(YesAddComputerButton))
+                .addContainerGap())
+        );
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel26.setText("Thêm máy");
+
+        javax.swing.GroupLayout AddComputerDailogLayout = new javax.swing.GroupLayout(AddComputerDailog.getContentPane());
+        AddComputerDailog.getContentPane().setLayout(AddComputerDailogLayout);
+        AddComputerDailogLayout.setHorizontalGroup(
+            AddComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddComputerDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        AddComputerDailogLayout.setVerticalGroup(
+            AddComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddComputerDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        SetComputerDailog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        SetComputerDailog.setModal(true);
+        SetComputerDailog.setResizable(false);
+        SetComputerDailog.setSize(new java.awt.Dimension(430, 290));
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel29.setText("Sửa thông tin máy");
+
+        jPanel18.setBackground(new java.awt.Color(241, 254, 254));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel30.setText("Tên máy");
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel31.setText("Trạng thái");
+
+        ExitSetComputerButton.setText("Hủy");
+        ExitSetComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitSetComputerButtonActionPerformed(evt);
+            }
+        });
+
+        YesSetComputerButton.setText("Sửa");
+        YesSetComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesSetComputerButtonActionPerformed(evt);
+            }
+        });
+
+        SetNameComputerTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        SetStatusComputerTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SetStatusComputerTXT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chưa sử dụng", "Hỏng" }));
+        SetStatusComputerTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetStatusComputerTXTActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SetNameComputerTXT)
+                            .addComponent(SetStatusComputerTXT, 0, 269, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(YesSetComputerButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExitSetComputerButton)))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(SetNameComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(SetStatusComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ExitSetComputerButton)
+                    .addComponent(YesSetComputerButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout SetComputerDailogLayout = new javax.swing.GroupLayout(SetComputerDailog.getContentPane());
+        SetComputerDailog.getContentPane().setLayout(SetComputerDailogLayout);
+        SetComputerDailogLayout.setHorizontalGroup(
+            SetComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SetComputerDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SetComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        SetComputerDailogLayout.setVerticalGroup(
+            SetComputerDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SetComputerDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
@@ -352,11 +596,11 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setText("QUẢN LÝ TÀI KHOẢN ADMIN");
 
-        AddUesrButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        AddUesrButton.setText("Sửa thông tin");
-        AddUesrButton.addActionListener(new java.awt.event.ActionListener() {
+        SetAdminButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        SetAdminButton.setText("Sửa thông tin");
+        SetAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddUesrButtonActionPerformed(evt);
+                SetAdminButtonActionPerformed(evt);
             }
         });
 
@@ -372,27 +616,27 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AddUesrButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(44, 44, 44))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddUesrButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -429,13 +673,45 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
         AdminPane.addTab("Trang chủ", jPanel1);
 
-        tableAccount.setModel(new javax.swing.table.DefaultTableModel(
+        TableAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "PHAM TAT TU", "0966580544", "150"},
-                {"2", "GIANG A CHINH", "0966580543", "20"},
                 {null, "", null, null},
                 {null, null, null, null},
                 {null, "", null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -443,18 +719,25 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Số thứ tự", "Họ và Tên", "Số điện thoại", "Thời gian (phút)"
+                "Số thứ tự", "Họ và Tên", "Số điện thoại", "Tiền (VND)"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(tableAccount);
+        jScrollPane1.setViewportView(TableAccount);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -464,10 +747,15 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Nhập số điện thoại");
 
-        TxtFindPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FindPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        FindButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        FindButton.setText("Tìm");
+        FindUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        FindUserButton.setText("Tìm");
+        FindUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FindUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -479,7 +767,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtFindPhone)
+                        .addComponent(FindPhoneTXT)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -487,7 +775,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                         .addGap(95, 95, 95))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(FindButton)
+                .addComponent(FindUserButton)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -498,9 +786,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(TxtFindPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FindPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FindButton)
+                .addComponent(FindUserButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -510,12 +798,17 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("Nhập số điện thoại");
 
-        TxtDeletePhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        TxtDeletePhone.setForeground(new java.awt.Color(255, 0, 0));
+        DeletePhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        DeletePhoneTXT.setForeground(new java.awt.Color(255, 0, 0));
 
         DeleteUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DeleteUserButton.setForeground(new java.awt.Color(255, 0, 0));
         DeleteUserButton.setText("Xóa");
+        DeleteUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteUserButtonActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 51));
@@ -531,7 +824,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtDeletePhone)
+                        .addComponent(DeletePhoneTXT)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -550,15 +843,20 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
-                    .addComponent(TxtDeletePhone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DeletePhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DeleteUserButton)
                 .addContainerGap())
         );
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 204, 0));
-        jButton1.setText("Làm mới");
+        RefreshAcconutButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        RefreshAcconutButton.setForeground(new java.awt.Color(0, 204, 0));
+        RefreshAcconutButton.setText("Làm mới");
+        RefreshAcconutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshAcconutButtonActionPerformed(evt);
+            }
+        });
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -568,13 +866,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel16.setText("Nhập số điện thoại");
 
-        TxtFindPhone1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FindAddPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        InAddButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InAddButton.setText("Thêm");
-        InAddButton.addActionListener(new java.awt.event.ActionListener() {
+        InAddUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InAddUserButton.setText("Thêm");
+        InAddUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InAddButtonActionPerformed(evt);
+                InAddUserButtonActionPerformed(evt);
             }
         });
 
@@ -588,10 +886,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtFindPhone1))
+                        .addComponent(FindAddPhoneTXT))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InAddButton)))
+                        .addComponent(InAddUserButton)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -605,9 +903,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16)
-                    .addComponent(TxtFindPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FindAddPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InAddButton)
+                .addComponent(InAddUserButton)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -619,13 +917,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel18.setText("Nhập số điện thoại");
 
-        TxtFindPhone2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FindSetPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        InSetButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InSetButton.setText("Sửa");
-        InSetButton.addActionListener(new java.awt.event.ActionListener() {
+        InSetUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InSetUserButton.setText("Sửa");
+        InSetUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InSetButtonActionPerformed(evt);
+                InSetUserButtonActionPerformed(evt);
             }
         });
 
@@ -639,10 +937,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtFindPhone2))
+                        .addComponent(FindSetPhoneTXT))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InSetButton)))
+                        .addComponent(InSetUserButton)))
                 .addContainerGap())
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
@@ -656,9 +954,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18)
-                    .addComponent(TxtFindPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FindSetPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InSetButton)
+                .addComponent(InSetUserButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -680,7 +978,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(148, 148, 148))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -698,7 +996,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -706,26 +1004,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
         TableComuper.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"MAY01", "Đang sử dụng", "PHAM TAT TU", "0123 123 123"},
-                {"MAY02", "Hỏng", null, null},
-                {"MAY03", "Hỏng", null, null},
-                {"MAY04", "Chưa dùng", null, null},
-                {"MAY05", "Chưa dùng", null, null},
-                {"MAY06", "Chưa dùng", null, null},
-                {"MAY07", "Chưa dùng", null, null},
-                {"MAY08", "Chưa dùng", null, null},
-                {"MAY09", "Chưa dùng", null, null},
-                {"MAY10", "Chưa dùng", null, null},
-                {"MAY11", "Chưa dùng", null, null},
-                {"MAY12", "Chưa dùng", null, null},
-                {"MAY13", "Chưa dùng", null, null},
-                {"MAY14", "Chưa dùng", null, null},
-                {"MAY15", "Chưa dùng", null, null},
-                {"MAY16", "Chưa dùng", null, null},
-                {"MAY17", "Chưa dùng", null, null},
-                {"MAY18", "Chưa dùng", null, null},
-                {"MAY19", "Chưa dùng", null, null},
-                {"MAY20", "Chưa dùng", null, null}
+
             },
             new String [] {
                 "Tên Máy", "Trạng thái", "Người sử dụng", "Số điện thoại"
@@ -734,61 +1013,105 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableComuper.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableComuperMouseClicked(evt);
+            }
         });
         jScrollPane2.setViewportView(TableComuper);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel9.setText("Tắt máy");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("Nhập tên máy");
-
-        TxtComputerName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        ShutDownButton.setText("Tắt");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtComputerName))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ShutDownButton)))
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(TxtComputerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ShutDownButton)
-                .addContainerGap())
-        );
 
         ShutDownALLButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         ShutDownALLButton.setForeground(new java.awt.Color(255, 0, 0));
         ShutDownALLButton.setText("TẮT HỆ THỐNG MÁY");
+
+        InAddComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InAddComputerButton.setForeground(new java.awt.Color(0, 0, 255));
+        InAddComputerButton.setText("Thêm máy");
+        InAddComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InAddComputerButtonActionPerformed(evt);
+            }
+        });
+
+        RefeshComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        RefeshComputerButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefeshComputerButton.setText("Làm mới");
+        RefeshComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefeshComputerButtonActionPerformed(evt);
+            }
+        });
+
+        Jp.setBackground(new java.awt.Color(255, 255, 255));
+
+        InSetComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InSetComputerButton.setForeground(new java.awt.Color(0, 0, 255));
+        InSetComputerButton.setText("Sửa thông tin máy");
+        InSetComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InSetComputerButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Tên máy");
+
+        DeleteComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        DeleteComputerButton.setForeground(new java.awt.Color(0, 0, 255));
+        DeleteComputerButton.setText("Xóa máy");
+        DeleteComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteComputerButtonActionPerformed(evt);
+            }
+        });
+
+        ShutDownComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ShutDownComputerButton.setForeground(new java.awt.Color(204, 0, 0));
+        ShutDownComputerButton.setText("Tắt máy");
+
+        javax.swing.GroupLayout JpLayout = new javax.swing.GroupLayout(Jp);
+        Jp.setLayout(JpLayout);
+        JpLayout.setHorizontalGroup(
+            JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(InSetComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(JpLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NameComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DeleteComputerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ShutDownComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        JpLayout.setVerticalGroup(
+            JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(NameComputerTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(InSetComputerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeleteComputerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ShutDownComputerButton)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -798,10 +1121,16 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ShutDownALLButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(RefeshComputerButton)
+                        .addGap(69, 69, 69))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ShutDownALLButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(InAddComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Jp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -809,10 +1138,14 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ShutDownALLButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(InAddComputerButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ShutDownALLButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
+                        .addComponent(RefeshComputerButton))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
@@ -862,6 +1195,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel11.setText("Hóa đơn");
         jLabel11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        RefeshOderButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RefeshOderButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefeshOderButton.setText("Làm mới");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -872,6 +1209,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(RefeshOderButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -879,8 +1220,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RefeshOderButton)
+                .addGap(54, 54, 54))
         );
 
         jPanel11.setBackground(new java.awt.Color(244, 254, 254));
@@ -920,8 +1263,8 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(204, 204, 204));
@@ -937,11 +1280,11 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel14.setText("VND");
 
-        CompleteButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CompleteButton.setText("Hoàng thành đơn hàng");
-        CompleteButton.addActionListener(new java.awt.event.ActionListener() {
+        CompleteOderButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CompleteOderButton.setText("Hoàng thành đơn hàng");
+        CompleteOderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CompleteButtonActionPerformed(evt);
+                CompleteOderButtonActionPerformed(evt);
             }
         });
 
@@ -959,19 +1302,19 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CompleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CompleteOderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(SumMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CompleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(CompleteOderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
@@ -994,9 +1337,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1062,11 +1405,11 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddUesrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUesrButtonActionPerformed
+    private void SetAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAdminButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new SetInfoJFrame().setVisible(true);
-    }//GEN-LAST:event_AddUesrButtonActionPerformed
+        new SetInfoJFrame(PhoneNow.getText(),Role.ADMIN).setVisible(true);
+    }//GEN-LAST:event_SetAdminButtonActionPerformed
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
@@ -1078,25 +1421,50 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
-    private void InAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InAddButtonActionPerformed
+    private void InAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InAddUserButtonActionPerformed
         // TODO add your handling code here:
         AddUserDailog.setVisible(true);
-    }//GEN-LAST:event_InAddButtonActionPerformed
+    }//GEN-LAST:event_InAddUserButtonActionPerformed
 
-    private void InSetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InSetButtonActionPerformed
+    private void InSetUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InSetUserButtonActionPerformed
         // TODO add your handling code here:
-        new SetInfoJFrame().setVisible(true);
-    }//GEN-LAST:event_InSetButtonActionPerformed
+        UserService userService = new UserService();
+        User user = userService.findUser(FindSetPhoneTXT.getText());
+        if(user != null) {
+            this.setVisible(false);
+            new SetInfoJFrame(FindSetPhoneTXT.getText(), Role.ADMIN).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
+                    "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_InSetUserButtonActionPerformed
 
-    private void CompleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteButtonActionPerformed
+    private void CompleteOderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteOderButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"Đã in hóa đơn",
-                "Thông báo hoàn tất hóa đơn",JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_CompleteButtonActionPerformed
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+        JOptionPane.showMessageDialog(this, "Đã in hóa đơn",
+                "Thông báo phụ vụ thành công", JOptionPane.INFORMATION_MESSAGE, icon);
+    }//GEN-LAST:event_CompleteOderButtonActionPerformed
 
     private void YesAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddUserButtonActionPerformed
         // TODO add your handling code here:
         AddUserDailog.setVisible(false);
+        if(PhoneAddTXT.getText().isBlank() || NameAddTXT.getText().isBlank() ||
+                    String.valueOf(PassAddTXT.getPassword()).isBlank() || String.valueOf(PassAC_AddTXT.getPassword()).isBlank()){
+            JOptionPane.showMessageDialog(this,"Không để trống thông tin",
+                    "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            UserService userService = new UserService();
+            User user = userService.findUser(PhoneAddTXT.getText());
+            if(user != null) {
+                JOptionPane.showMessageDialog(this,"Tài khoản đã tồn tại",
+                        "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            userService.addUser(new User(PhoneAddTXT.getText(), NameAddTXT.getText(),
+                    BCrypt.hashpw(String.valueOf(PassAC_AddTXT.getPassword()),BCrypt.gensalt()), 0, Role.USER));
+        }
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
         JOptionPane.showMessageDialog(this,"Đã thêm thành công",
                 "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1109,6 +1477,205 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         if(check == JOptionPane.OK_OPTION)
             AddUserDailog.setVisible(false);
     }//GEN-LAST:event_ExitAddUserButtonActionPerformed
+
+    private void RefreshAcconutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshAcconutButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TableAccount.getModel();
+        model.setRowCount(0); // Xóa toàn bộ dữ liệu nhưng giữ lại các cột
+        UserService userService = new UserService();
+        ArrayList<User> users = userService.SelectAllUser();
+        int count = 0;
+        for(User user : users){
+            if(user.getRole().equals(Role.USER)){
+                count++;
+                model.addRow(new Object[]{count, user.getName(), user.getPhone(), user.getMoney()});
+            }
+        }
+    }//GEN-LAST:event_RefreshAcconutButtonActionPerformed
+
+    private void FindUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindUserButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TableAccount.getModel();
+        model.setRowCount(0); // Xóa toàn bộ dữ liệu nhưng giữ lại các cột
+        UserService userService = new UserService();
+        User user = userService.findUser(FindPhoneTXT.getText());
+        if(user == null) {
+            JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        model.addRow(new Object[]{1, user.getName(), user.getPhone(), user.getMoney()});
+    }//GEN-LAST:event_FindUserButtonActionPerformed
+
+    private void DeleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserButtonActionPerformed
+        // TODO add your handling code here:
+        UserService userService = new UserService();
+        User user = userService.findUser(DeletePhoneTXT.getText());
+        if(user == null) {
+            JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận xóa",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION) {
+            userService.deleteUser(user);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã Xóa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_DeleteUserButtonActionPerformed
+
+    private void AddStatusComputerTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStatusComputerTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddStatusComputerTXTActionPerformed
+
+    private void SetStatusComputerTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetStatusComputerTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SetStatusComputerTXTActionPerformed
+
+    private void InAddComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InAddComputerButtonActionPerformed
+        // TODO add your handling code here:
+        AddStatusComputerTXT.removeAllItems();
+        Status[] statuses = Status.values();
+        for(int i=0; i<statuses.length-1; i++)
+            AddStatusComputerTXT.addItem(statuses[i].getDescription());
+        AddComputerDailog.setVisible(true);
+        
+    }//GEN-LAST:event_InAddComputerButtonActionPerformed
+
+    private void ExitAddComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitAddComputerButtonActionPerformed
+        // TODO add your handling code here:
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION)
+            AddComputerDailog.setVisible(false);
+    }//GEN-LAST:event_ExitAddComputerButtonActionPerformed
+
+    private void ExitSetComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitSetComputerButtonActionPerformed
+        // TODO add your handling code here:
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION)
+            SetComputerDailog.setVisible(false);
+    }//GEN-LAST:event_ExitSetComputerButtonActionPerformed
+
+    private void InSetComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InSetComputerButtonActionPerformed
+        // TODO add your handling code here:
+        ComputerService computerService = new ComputerService();
+        Computer computer = computerService.findComputer(String.valueOf(NameComputerTXT.getText()));
+        if(computer == null) {
+            JOptionPane.showMessageDialog(this,"Máy không tồn tại",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        AddStatusComputerTXT.removeAllItems();
+        Status[] statuses = Status.values();
+        for(int i=0; i<statuses.length-1; i++)
+            AddStatusComputerTXT.addItem(statuses[i].getDescription());
+        SetNameComputerTXT.setText(NameComputerTXT.getText());
+        SetComputerDailog.setVisible(true);
+    }//GEN-LAST:event_InSetComputerButtonActionPerformed
+
+    private void YesAddComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddComputerButtonActionPerformed
+        // TODO add your handling code here:
+        if(String.valueOf(AddStatusComputerTXT.getSelectedItem()).isBlank() || AddNameComputerTXT.getText().isBlank()){
+            JOptionPane.showMessageDialog(this,"Không để trống thông tin",
+                    "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ComputerService computerService = new ComputerService();
+        Computer computer = computerService.findComputer(AddNameComputerTXT.getText());
+        if(computer != null) {
+            JOptionPane.showMessageDialog(this,"Tên máy đã tồn tại",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận thêm",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION) {
+            computer = computerService.setNewComputer(
+                    AddNameComputerTXT.getText(),
+                    String.valueOf(AddStatusComputerTXT.getSelectedItem())
+            );
+            computerService.addComputer(computer);
+            AddComputerDailog.setVisible(false);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã thêm thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_YesAddComputerButtonActionPerformed
+
+    private void YesSetComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesSetComputerButtonActionPerformed
+        // TODO add your handling code here:
+        if(String.valueOf(SetStatusComputerTXT.getSelectedItem()).isBlank() || SetNameComputerTXT.getText().isBlank()){
+            JOptionPane.showMessageDialog(this,"Không để trống thông tin",
+                    "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận sửa",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION) {
+            ComputerService computerService = new ComputerService();
+            computerService.deleteComputer(
+                    computerService.findComputer(NameComputerTXT.getText())
+            );
+            computerService.addComputer(
+                    computerService.setNewComputer(
+                            SetNameComputerTXT.getText(), String.valueOf(SetStatusComputerTXT.getSelectedItem()))
+            );
+            SetComputerDailog.setVisible(false);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_YesSetComputerButtonActionPerformed
+
+    private void DeleteComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteComputerButtonActionPerformed
+        // TODO add your handling code here:
+        ComputerService computerService = new ComputerService();
+        Computer computer = computerService.findComputer(String.valueOf(NameComputerTXT.getText()));
+        if(computer == null) {
+            JOptionPane.showMessageDialog(this,"Máy không tồn tại",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận xóa",
+                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(check == JOptionPane.OK_OPTION){
+            computerService.deleteComputer(computer);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã xóa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_DeleteComputerButtonActionPerformed
+
+    private void RefeshComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefeshComputerButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TableComuper.getModel();
+        model.setRowCount(0); // Xóa toàn bộ dữ liệu nhưng giữ lại các cột
+        ComputerService computerService = new ComputerService();
+        ArrayList<Computer> computers = computerService.selectAllComputer();
+        for(Computer computer : computers){
+            if(computer.getUser() != null)
+                model.addRow(new Object[]{
+                        computer.getName(), computer.getStatus().getDescription(), computer.getUser().getName(), computer.getUser().getMoney()});
+            else
+                model.addRow(new Object[]{computer.getName(), computer.getStatus().getDescription()});
+        }
+    }//GEN-LAST:event_RefeshComputerButtonActionPerformed
+
+    private void TableComuperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableComuperMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = TableComuper.getSelectedRow(); // Lấy hàng đang được chọn
+        if (selectedRow != -1) {
+            String col1 = TableComuper.getValueAt(selectedRow, 0).toString();
+            NameComputerTXT.setText(col1);
+        }
+    }//GEN-LAST:event_TableComuperMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1148,40 +1715,57 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JOptionPane AC_Option;
-    private javax.swing.JButton AddUesrButton;
+    private javax.swing.JDialog AddComputerDailog;
+    private javax.swing.JTextField AddNameComputerTXT;
+    private javax.swing.JComboBox<String> AddStatusComputerTXT;
     private javax.swing.JDialog AddUserDailog;
     private javax.swing.JTabbedPane AdminPane;
     private javax.swing.JDialog CheckOTP_Dailog;
-    private javax.swing.JButton CompleteButton;
+    private javax.swing.JButton CompleteOderButton;
+    private javax.swing.JButton DeleteComputerButton;
+    private javax.swing.JTextField DeletePhoneTXT;
     private javax.swing.JButton DeleteUserButton;
+    private javax.swing.JButton ExitAddComputerButton;
     private javax.swing.JButton ExitAddUserButton;
-    private javax.swing.JButton FindButton;
-    private javax.swing.JButton InAddButton;
-    private javax.swing.JButton InSetButton;
+    private javax.swing.JButton ExitSetComputerButton;
+    private javax.swing.JTextField FindAddPhoneTXT;
+    private javax.swing.JTextField FindPhoneTXT;
+    private javax.swing.JTextField FindSetPhoneTXT;
+    private javax.swing.JButton FindUserButton;
+    private javax.swing.JButton InAddComputerButton;
+    private javax.swing.JButton InAddUserButton;
+    private javax.swing.JButton InSetComputerButton;
+    private javax.swing.JButton InSetUserButton;
+    private javax.swing.JPanel Jp;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JTextField NameAddTXT;
+    private javax.swing.JTextField NameComputerTXT;
     private javax.swing.JPasswordField PassAC_AddTXT;
     private javax.swing.JPasswordField PassAddTXT;
     private javax.swing.JTextField PhoneAddTXT;
+    private javax.swing.JTextField PhoneNow;
+    private javax.swing.JButton RefeshComputerButton;
+    private javax.swing.JButton RefeshOderButton;
+    private javax.swing.JButton RefreshAcconutButton;
+    private javax.swing.JButton SetAdminButton;
+    private javax.swing.JDialog SetComputerDailog;
+    private javax.swing.JTextField SetNameComputerTXT;
+    private javax.swing.JComboBox<String> SetStatusComputerTXT;
     private javax.swing.JButton ShutDownALLButton;
-    private javax.swing.JButton ShutDownButton;
+    private javax.swing.JButton ShutDownComputerButton;
     private javax.swing.JTextField SumMoney;
+    private javax.swing.JTable TableAccount;
     private javax.swing.JTable TableComuper;
     private javax.swing.JTable TableDetailOder;
     private javax.swing.JTable TableOder;
-    private javax.swing.JTextField TxtComputerName;
-    private javax.swing.JTextField TxtDeletePhone;
-    private javax.swing.JTextField TxtFindPhone;
-    private javax.swing.JTextField TxtFindPhone1;
-    private javax.swing.JTextField TxtFindPhone2;
+    private javax.swing.JButton YesAddComputerButton;
     private javax.swing.JButton YesAddUserButton;
+    private javax.swing.JButton YesSetComputerButton;
     private javax.swing.JLabel computerIcon;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1198,7 +1782,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1213,6 +1803,8 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1220,7 +1812,6 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1231,6 +1822,5 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTable tableAccount;
     // End of variables declaration//GEN-END:variables
 }

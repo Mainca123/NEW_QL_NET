@@ -5,12 +5,11 @@
 package org.example.VIEW.TogetherSERVICE;
 
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-import org.example.ENTYTI.USER.Role;
+import org.example.ENTITY.USER.Role;
 import org.mindrot.jbcrypt.BCrypt;
-import org.example.ENTYTI.USER.User;
+import org.example.ENTITY.USER.User;
 import org.example.VIEW.BOSS.HomeBossJFrame;
 import org.example.VIEW.USER.HomeUserJFrame;
 
@@ -316,7 +315,7 @@ public class HomeJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Xin Chào ADMIN",
                     "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
             this.setVisible(false);
-            new HomeBossJFrame().setVisible(true);
+            new HomeBossJFrame(phone).setVisible(true);
             return;
         }
         
