@@ -2146,6 +2146,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
     private void AddMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoneyButtonActionPerformed
         // TODO add your handling code here:
+        UserService userService = new UserService();
+        User user = userService.findUser(ChoosePhoneTXT.getText());
+        if(user == null) {
+            JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         AddMoneyDailog.setVisible(true);
     }//GEN-LAST:event_AddMoneyButtonActionPerformed
 
@@ -2153,7 +2160,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         UserService userService = new UserService();
         User user = userService.findUser(ChoosePhoneTXT.getText());
-        user.setMoney(Integer.parseInt(moneyTXT.getText()));
+        user.setMoney(user.getMoney() + Integer.parseInt(moneyTXT.getText()));
         userService.addUser(user);
         AddMoneyDailog.setVisible(false);
         JOptionPane.showMessageDialog(this,"Nạp tiền thành công",

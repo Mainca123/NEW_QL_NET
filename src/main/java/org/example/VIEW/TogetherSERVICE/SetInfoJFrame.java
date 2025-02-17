@@ -188,12 +188,18 @@ public class SetInfoJFrame extends javax.swing.JFrame {
 
     private void YesSetInforButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesSetInforButtonActionPerformed
         // TODO add your handling code here:
+        if(SetNameTXT.getText().isBlank() || SetPhoneTXT.getText().isBlank() || String.valueOf(SetPassTXT.getPassword()).isBlank() || String.valueOf(SetPassACTXT).isBlank()){
+            JOptionPane.showMessageDialog(this,"Không để trống thông tin",
+                    "Thông báo lỗi", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         int check = JOptionPane.showConfirmDialog(this, "Xác nhận thay đổi",
                 "THÔNG BÁO", JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             UserService userService = new UserService();
             User oldUser = userService.findUser(PhoneNow.getText());
-            if(!String.valueOf(this.SetPassACTXT.getPassword()).isBlank() && userService.checkPAss(this.SetPassTXT.getPassword(),this.SetPassACTXT.getPassword())){
+            if(userService.checkPAss(this.SetPassTXT.getPassword(),this.SetPassACTXT.getPassword())){
                 User newUser = userService.setUser(
                         oldUser,this.SetPhoneTXT.getText(), this.SetNameTXT.getText(), this.SetPassACTXT.getPassword());
                 userService.deleteUser(oldUser);
@@ -204,13 +210,13 @@ public class SetInfoJFrame extends javax.swing.JFrame {
                     new HomeBossJFrame(this.PhoneNow.getText()).setVisible(true);
                     return;
                 }
+                this.setVisible(false);
+                new HomeUserJFrame(this.PhoneNow.getText()).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this,"Mật khẩu không khấp",
                         "Thông báo",JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            this.setVisible(false);
-            new HomeUserJFrame(this.PhoneNow.getName()).setVisible(true);
         }
     }//GEN-LAST:event_YesSetInforButtonActionPerformed
 

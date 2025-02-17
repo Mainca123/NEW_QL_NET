@@ -34,33 +34,61 @@ public class HomeUserJFrame extends javax.swing.JFrame {
     public HomeUserJFrame(String username) {
         initComponents();
         this.PhoneUserTXT.setText(username);
-        User user = entityManager.find(User.class, PhoneUserTXT.getText());
-        double time = (double) user.getMoney() /8000;
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+        // Tìm user trong database
+        UserService userService = new UserService();
+        User user = userService.findUser(PhoneUserTXT.getText());
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "User không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double moneyPerSecond = 8000.0 / 3600; // Tính tiền giảm mỗi giây
+        double totalMoney = user.getMoney(); // Lấy số tiền hiện tại
+
+        // Thời gian sử dụng dựa trên số tiền
+        double time = totalMoney / 8000;
         LocalDateTime endTime = LocalDateTime.now().plusSeconds((long) (time * 60 * 60));
-        LocalDateTime firstTime = LocalDateTime.now().plusSeconds((long) (0));
+        LocalDateTime firstTime = LocalDateTime.now();
+
+        // Scheduler chạy mỗi giây
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
             LocalDateTime currentTime = LocalDateTime.now();
             Duration remainingTime = Duration.between(currentTime, endTime);
-            Duration startTime = Duration.between(firstTime,currentTime);
+            Duration startTime = Duration.between(firstTime, currentTime);
+
             long secondsLeft = remainingTime.getSeconds();
-            long timeuse = startTime.getSeconds();
-            if (secondsLeft <= 0) {
-                System.out.println("Hết giờ! Máy sẽ tự động khóa.");
+            long timeUse = startTime.getSeconds();
+
+            // Cập nhật số tiền còn lại
+            double moneyLeft = totalMoney - (timeUse * moneyPerSecond);
+            if (moneyLeft < 0) moneyLeft = 0; // Không cho xuống âm
+
+            // Hiển thị thời gian đã dùng và thời gian còn lại
+            long hoursUsed = timeUse / 3600;
+            long minutesUsed = (timeUse % 3600) / 60;
+            long secondsUsed = timeUse % 60;
+            long hoursLeft = secondsLeft / 3600;
+            long minutesLeft = (secondsLeft % 3600) / 60;
+            long secondsLeftMod = secondsLeft % 60;
+
+            timeUser.setText(hoursUsed + ":" + minutesUsed + ":" + secondsUsed);
+            lastTime.setText(hoursLeft + ":" + minutesLeft + ":" + secondsLeftMod);
+            user.setMoney((int)moneyLeft);
+            userService.addUser(user);
+            // Kiểm tra hết tiền
+            if (moneyLeft <= 0) {
+                this.setVisible(false);
+                new HomeJFrame().setVisible(true);
+                JOptionPane.showMessageDialog(this,"Số dư không đủ",
+                        "Thông báo",JOptionPane.WARNING_MESSAGE);
                 scheduler.shutdown();
                 return;
             }
-            long hourss = timeuse / 3600;
-            long minutess = (timeuse % 3600) / 60;
-            long secondss = timeuse % 60;
-            long hours = secondsLeft / 3600;
-            long minutes = (secondsLeft % 3600) / 60;
-            long seconds = secondsLeft % 60;
-            timeUser.setText(hourss + ":" + minutess + ":" +secondss );
-            lastTime.setText(hours + ":" + minutes + ":" +seconds);
         }, 0, 1, TimeUnit.SECONDS);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
