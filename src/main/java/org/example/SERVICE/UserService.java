@@ -44,6 +44,7 @@ public class UserService {
     }
 
     public ArrayList<User> SelectAllUser(){
+        entityManager.clear();
         TypedQuery<User> query = entityManager.createQuery("Select c From User c", User.class);
         ArrayList<User> users = new ArrayList<>();
         users = (ArrayList<User>) query.getResultList();

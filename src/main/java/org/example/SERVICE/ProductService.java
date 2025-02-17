@@ -10,6 +10,7 @@ import static org.example.DAO.Main.entityManager;
 public class ProductService {
 
     public ArrayList<Product> selectAllProduct(){
+        entityManager.clear();
         TypedQuery<Product> query = entityManager.createQuery("Select c from Product c", Product.class);
         return (ArrayList<Product>) query.getResultList();
     }
@@ -29,6 +30,7 @@ public class ProductService {
     }
 
     public Product FindProduct(int id){
+        entityManager.clear();
         return entityManager.find(Product.class,id);
     }
 

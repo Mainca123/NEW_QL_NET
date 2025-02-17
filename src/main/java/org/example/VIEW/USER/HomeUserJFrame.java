@@ -6,12 +6,16 @@ package org.example.VIEW.USER;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.example.ENTITY.Computer.Computer;
+import org.example.ENTITY.Computer.Status;
 import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
+import org.example.SERVICE.ComputerService;
 import org.example.SERVICE.UserService;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.example.VIEW.TogetherSERVICE.SetInfoJFrame;
@@ -75,12 +79,28 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
             timeUser.setText(hoursUsed + ":" + minutesUsed + ":" + secondsUsed);
             lastTime.setText(hoursLeft + ":" + minutesLeft + ":" + secondsLeftMod);
-            user.setMoney((int)moneyLeft);
+            if(userService.findUser(PhoneUserTXT.getText()).getMoney() != -5)
+                user.setMoney((int)moneyLeft);
+            else {
+                JOptionPane.showMessageDialog(this,"Bạn đã bị kích",
+                        "Thông báo",JOptionPane.WARNING_MESSAGE);
+                user.setMoney((int)moneyLeft);
+                userService.addUser(user);
+                this.setVisible(false);
+                new HomeJFrame().setVisible(true);
+                scheduler.shutdown();
+                return;
+            }
             userService.addUser(user);
             // Kiểm tra hết tiền
             if (moneyLeft <= 0) {
                 this.setVisible(false);
                 new HomeJFrame().setVisible(true);
+                ComputerService computerService = new ComputerService();
+                Computer computer = computerService.findUserComputer(PhoneUserTXT.getText());
+                computer.setUser(null);
+                computer.setStatus(Status.AVAILABLE);
+                computerService.addComputer(computer);
                 JOptionPane.showMessageDialog(this,"Số dư không đủ",
                         "Thông báo",JOptionPane.WARNING_MESSAGE);
                 scheduler.shutdown();
@@ -119,11 +139,12 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         Uong2 = new javax.swing.JCheckBox();
         OderButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        ComputerNameTXT = new javax.swing.JTextField();
         desktop = new javax.swing.JDesktopPane();
         mainBoard = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         Food = new javax.swing.JButton();
-        Exit = new javax.swing.JButton();
+        LogoutUserButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         timeUser = new javax.swing.JTextField();
@@ -346,10 +367,14 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                 .addGap(0, 33, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        ComputerNameTXT.setText("jTextField1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("User Desktop");
         setBackground(new java.awt.Color(224, 224, 224));
+        setPreferredSize(new java.awt.Dimension(1200, 740));
         setResizable(false);
+        setSize(new java.awt.Dimension(1200, 740));
 
         desktop.setBackground(new java.awt.Color(253, 231, 253));
         desktop.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -375,11 +400,11 @@ public class HomeUserJFrame extends javax.swing.JFrame {
             }
         });
 
-        Exit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Exit.setText("Đăng xuất");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
+        LogoutUserButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LogoutUserButton.setText("Đăng xuất");
+        LogoutUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
+                LogoutUserButtonActionPerformed(evt);
             }
         });
 
@@ -421,7 +446,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(mainBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Food, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LogoutUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SetUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainBoardLayout.createSequentialGroup()
@@ -429,11 +454,11 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                             .addGroup(mainBoardLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PhoneUserTXT))
+                                .addComponent(PhoneUserTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                             .addGroup(mainBoardLayout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastTime, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addComponent(lastTime))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainBoardLayout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -460,10 +485,10 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Food, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SetUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LogoutUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -482,19 +507,22 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 753, Short.MAX_VALUE)
-                .addComponent(mainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(desktopLayout.createSequentialGroup()
+                .addContainerGap(898, Short.MAX_VALUE)
+                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
+                        .addComponent(UserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
+                        .addComponent(mainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))))
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(mainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                 .addComponent(UserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -504,7 +532,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(desktop)
                 .addContainerGap())
         );
@@ -513,7 +541,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(desktop)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
@@ -556,15 +584,20 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         mainBoard.setVisible(!mainBoard.isVisible());
     }//GEN-LAST:event_UserButtonActionPerformed
 
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+    private void LogoutUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutUserButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this, "XÁC NHẬN ĐĂNG XUẤT", 
-                "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                "THÔNG BÁO", JOptionPane.NO_OPTION);
+        ComputerService computerService = new ComputerService();
+        Computer computer = computerService.findUserComputer(PhoneUserTXT.getText());
         if(check == JOptionPane.OK_OPTION) {
+            computer.setStatus(Status.AVAILABLE);
+            computer.setUser(null);
+            computerService.addComputer(computer);
             this.setVisible(false);
             new HomeJFrame().setVisible(true);
         }
-    }//GEN-LAST:event_ExitActionPerformed
+    }//GEN-LAST:event_LogoutUserButtonActionPerformed
 
     private void timeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeUserActionPerformed
         // TODO add your handling code here:
@@ -617,11 +650,12 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddMoneyButton;
+    private javax.swing.JTextField ComputerNameTXT;
     private javax.swing.JCheckBox Do1;
     private javax.swing.JCheckBox Do2;
     private javax.swing.JCheckBox Do3;
-    private javax.swing.JButton Exit;
     private javax.swing.JButton Food;
+    private javax.swing.JButton LogoutUserButton;
     private javax.swing.JButton OderButton;
     private javax.swing.JDialog OderDialog;
     private javax.swing.JTextField PhoneUserTXT;

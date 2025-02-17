@@ -1956,7 +1956,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         for(Computer computer : computers){
             if(computer.getUser() != null)
                 model.addRow(new Object[]{
-                        computer.getName(), computer.getStatus().getDescription(), computer.getUser().getName(), computer.getUser().getMoney()});
+                        computer.getName(), computer.getStatus().getDescription(), computer.getUser().getName(), computer.getUser().getPhone()});
             else
                 model.addRow(new Object[]{computer.getName(), computer.getStatus().getDescription()});
         }
@@ -1981,11 +1981,16 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(computer.getUser() != null){
+        if(computer.getUser() != null || computer.getStatus().equals(Status.IN_USE)){
             computerService.deleteComputer(computer);
+            computer.setStatus(Status.AVAILABLE);
             computerService.addComputer(
                     computerService.setNewComputer(computer.getName(),computer.getStatus().getDescription())
             );
+            UserService userService = new UserService();
+            User user = userService.findUser(computer.getUser().getPhone());
+            user.setMoney(-5);
+            userService.addUser(user);
             ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
             JOptionPane.showMessageDialog(this, "Đã tắt thành công",
                     "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);

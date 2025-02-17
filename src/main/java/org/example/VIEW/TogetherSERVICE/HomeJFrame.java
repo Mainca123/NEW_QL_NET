@@ -324,11 +324,8 @@ public class HomeJFrame extends javax.swing.JFrame {
                     "Thông báo",JOptionPane.WARNING_MESSAGE);
             return;
         }
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
-        JOptionPane.showMessageDialog(this,"Đăng nhập thành công",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
         this.setVisible(false);
-        new HomeUserJFrame(phone).setVisible(true);
+        new ComputerJFrame(phone).setVisible(true);
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
