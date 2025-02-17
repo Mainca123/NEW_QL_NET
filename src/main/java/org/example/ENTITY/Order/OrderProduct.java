@@ -3,27 +3,27 @@ package org.example.ENTITY.Order;
 import jakarta.persistence.*;
 
 @Entity
-public class ChiTietDonHang {
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;  // Khóa chính tự tăng
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private Don order;  // Khóa ngoại
+    private A_Order order;  // Khóa ngoại
 
     @ManyToOne
-    @JoinColumn(name = "hang_id", nullable = false)
-    private Hang hang;  // Khóa ngoại
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;  // Khóa ngoại
 
     @Column(nullable = false)
     private int soLuong;
 
-    public ChiTietDonHang() {}
+    public OrderProduct() {}
 
-    public ChiTietDonHang(Don order, Hang hang, int soLuong) {
+    public OrderProduct(A_Order order, Product product, int soLuong) {
         this.order = order;
-        this.hang = hang;
+        this.product = product;
         this.soLuong = soLuong;
     }
 
@@ -32,24 +32,22 @@ public class ChiTietDonHang {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) {this.id = id;}
 
-    public Don getOrder() {
+    public A_Order getOrder() {
         return order;
     }
 
-    public void setOrder(Don order) {
+    public void setOrder(A_Order order) {
         this.order = order;
     }
 
-    public Hang getHang() {
-        return hang;
+    public Product getHang() {
+        return product;
     }
 
-    public void setHang(Hang hang) {
-        this.hang = hang;
+    public void setHang(Product product) {
+        this.product = product;
     }
 
     public int getSoLuong() {

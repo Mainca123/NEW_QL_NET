@@ -20,6 +20,7 @@ public class Computer {
     public Computer(String name, Status status) {
         this.name = name;
         this.status = status;
+        this.user = null;
     }
 
     // Getter & Setter

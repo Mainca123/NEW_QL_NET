@@ -189,16 +189,15 @@ public class SetInfoJFrame extends javax.swing.JFrame {
     private void YesSetInforButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesSetInforButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this, "Xác nhận thay đổi",
-                "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                "THÔNG BÁO", JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             UserService userService = new UserService();
             User oldUser = userService.findUser(PhoneNow.getText());
-            if(!String.valueOf(this.SetPassACTXT.getPassword()).isBlank() &&
-                    userService.checkPAss(this.SetPassTXT.getPassword(),this.SetPassACTXT.getPassword())){
+            if(!String.valueOf(this.SetPassACTXT.getPassword()).isBlank() && userService.checkPAss(this.SetPassTXT.getPassword(),this.SetPassACTXT.getPassword())){
                 User newUser = userService.setUser(
                         oldUser,this.SetPhoneTXT.getText(), this.SetNameTXT.getText(), this.SetPassACTXT.getPassword());
-                userService.addUser(newUser);
                 userService.deleteUser(oldUser);
+                userService.addUser(newUser);
                 this.PhoneNow.setText(newUser.getPhone());
                 if(RoleNow.getText().equals(String.valueOf(Role.ADMIN))){
                     this.setVisible(false);
@@ -277,3 +276,4 @@ public class SetInfoJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+

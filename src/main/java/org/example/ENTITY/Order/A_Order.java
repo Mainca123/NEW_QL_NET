@@ -6,7 +6,7 @@ import org.example.ENTITY.USER.User;
 import java.util.Set;
 
 @Entity
-public class Don {
+public class A_Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,11 +16,11 @@ public class Don {
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<ChiTietDonHang> orderHangs;
+    private Set<OrderProduct> orderHangs;
 
-    public Don() {}
+    public A_Order() {}
 
-    public Don(User user) {
+    public A_Order(User user) {
         this.user = user;
     }
 
@@ -41,11 +41,11 @@ public class Don {
         this.user = user;
     }
 
-    public Set<ChiTietDonHang> getOrderHangs() {
+    public Set<OrderProduct> getOrderHangs() {
         return orderHangs;
     }
 
-    public void setOrderHangs(Set<ChiTietDonHang> orderHangs) {
+    public void setOrderHangs(Set<OrderProduct> orderHangs) {
         this.orderHangs = orderHangs;
     }
 }

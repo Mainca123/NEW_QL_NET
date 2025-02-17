@@ -1,6 +1,7 @@
 package org.example.SERVICE;
 
 import jakarta.persistence.TypedQuery;
+import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -10,6 +11,10 @@ import java.util.Arrays;
 import static org.example.DAO.Main.entityManager;
 
 public class UserService {
+
+    public boolean checkAdmin(User user){
+        return user.getRole().equals(Role.ADMIN);
+    }
 
     public User findUser(String  phone){
        return entityManager.find(User.class,phone);

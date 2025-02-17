@@ -10,9 +10,11 @@ import javax.swing.table.DefaultTableModel;
 
 import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.Computer.Status;
+import org.example.ENTITY.Order.Product;
 import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
 import org.example.SERVICE.ComputerService;
+import org.example.SERVICE.ProductService;
 import org.example.SERVICE.UserService;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.example.VIEW.TogetherSERVICE.SetInfoJFrame;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
  */
 public class HomeBossJFrame extends javax.swing.JFrame {
 
+
     /**
      * Creates new form HOMEE
      */
@@ -37,6 +40,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         initComponents();
         this.PhoneNow.setText(phone);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +94,37 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         YesSetComputerButton = new javax.swing.JButton();
         SetNameComputerTXT = new javax.swing.JTextField();
         SetStatusComputerTXT = new javax.swing.JComboBox<>();
+        AddProductDailog = new javax.swing.JDialog();
+        jLabel32 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        ExitAddProductButton = new javax.swing.JButton();
+        YesAddProductButton = new javax.swing.JButton();
+        AddNameProductTXT = new javax.swing.JTextField();
+        AddTypeProductTXT = new javax.swing.JComboBox<>();
+        jLabel35 = new javax.swing.JLabel();
+        AddQuantityProductTXT = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        AddPriceProductTXT = new javax.swing.JTextField();
+        SetProductDailog = new javax.swing.JDialog();
+        jLabel37 = new javax.swing.JLabel();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        ExitSetProductButton = new javax.swing.JButton();
+        YesSetProductButton = new javax.swing.JButton();
+        SetNameProductTXT = new javax.swing.JTextField();
+        SetTypeProductTXT = new javax.swing.JComboBox<>();
+        jLabel40 = new javax.swing.JLabel();
+        SetQuantityProductTXT = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        SetPriceProductTXT = new javax.swing.JTextField();
+        AddMoneyDailog = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        moneyTXT = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        YesAddMoneyButton = new javax.swing.JButton();
         AdminPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -103,39 +138,26 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableAccount = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        FindPhoneTXT = new javax.swing.JTextField();
-        FindUserButton = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        DeletePhoneTXT = new javax.swing.JTextField();
-        DeleteUserButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        RefreshAcconutButton = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        FindAddPhoneTXT = new javax.swing.JTextField();
-        InAddUserButton = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        FindSetPhoneTXT = new javax.swing.JTextField();
+        ChoosePhoneTXT = new javax.swing.JTextField();
         InSetUserButton = new javax.swing.JButton();
+        DeleteUserButton = new javax.swing.JButton();
+        RefreshAcconutButton = new javax.swing.JButton();
+        FindUserButton = new javax.swing.JButton();
+        AddMoneyButton = new javax.swing.JButton();
+        InAddUserButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableComuper = new javax.swing.JTable();
-        ShutDownALLButton = new javax.swing.JButton();
         InAddComputerButton = new javax.swing.JButton();
-        RefeshComputerButton = new javax.swing.JButton();
         Jp = new javax.swing.JPanel();
         InSetComputerButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         NameComputerTXT = new javax.swing.JTextField();
         DeleteComputerButton = new javax.swing.JButton();
         ShutDownComputerButton = new javax.swing.JButton();
+        RefeshComputerButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -151,6 +173,16 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         SumMoney = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         CompleteOderButton = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TableProduct = new javax.swing.JTable();
+        InAddProductButton = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        ProductID_TXT = new javax.swing.JTextField();
+        InSetProductButton = new javax.swing.JButton();
+        DeleteProductButton = new javax.swing.JButton();
+        RefreshProductButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -570,21 +602,322 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
+        AddProductDailog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        AddProductDailog.setModal(true);
+        AddProductDailog.setResizable(false);
+        AddProductDailog.setSize(new java.awt.Dimension(438, 325));
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel32.setText("Thêm mặt hàng");
+
+        jPanel19.setBackground(new java.awt.Color(241, 254, 254));
+
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel33.setText("Tên hàng");
+
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel34.setText("Loại");
+
+        ExitAddProductButton.setText("Hủy");
+        ExitAddProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitAddProductButtonActionPerformed(evt);
+            }
+        });
+
+        YesAddProductButton.setText("Thêm");
+        YesAddProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesAddProductButtonActionPerformed(evt);
+            }
+        });
+
+        AddNameProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        AddTypeProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AddTypeProductTXT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Đồ ăn", "Đồ uống" }));
+        AddTypeProductTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddTypeProductTXTActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel35.setText("Số lượng");
+
+        AddQuantityProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel36.setText("Giá");
+
+        AddPriceProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(YesAddProductButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExitAddProductButton))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddNameProductTXT)
+                            .addComponent(AddTypeProductTXT, 0, 269, Short.MAX_VALUE)
+                            .addComponent(AddQuantityProductTXT)
+                            .addComponent(AddPriceProductTXT))))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(AddNameProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(AddPriceProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(AddQuantityProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddTypeProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ExitAddProductButton)
+                    .addComponent(YesAddProductButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout AddProductDailogLayout = new javax.swing.GroupLayout(AddProductDailog.getContentPane());
+        AddProductDailog.getContentPane().setLayout(AddProductDailogLayout);
+        AddProductDailogLayout.setHorizontalGroup(
+            AddProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddProductDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        AddProductDailogLayout.setVerticalGroup(
+            AddProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddProductDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        SetProductDailog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        SetProductDailog.setModal(true);
+        SetProductDailog.setResizable(false);
+        SetProductDailog.setSize(new java.awt.Dimension(438, 325));
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel37.setText("Sủa thông tin mặt hàng");
+
+        jPanel20.setBackground(new java.awt.Color(241, 254, 254));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel38.setText("Tên hàng");
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel39.setText("Loại");
+
+        ExitSetProductButton.setText("Hủy");
+        ExitSetProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitSetProductButtonActionPerformed(evt);
+            }
+        });
+
+        YesSetProductButton.setText("Sửa");
+        YesSetProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesSetProductButtonActionPerformed(evt);
+            }
+        });
+
+        SetNameProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        SetTypeProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SetTypeProductTXT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Đồ ăn", "Đồ uống" }));
+        SetTypeProductTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetTypeProductTXTActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel40.setText("Số lượng");
+
+        SetQuantityProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel41.setText("Giá");
+
+        SetPriceProductTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(YesSetProductButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExitSetProductButton))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SetNameProductTXT)
+                            .addComponent(SetTypeProductTXT, 0, 269, Short.MAX_VALUE)
+                            .addComponent(SetQuantityProductTXT)
+                            .addComponent(SetPriceProductTXT))))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(SetNameProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(SetPriceProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(SetQuantityProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SetTypeProductTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ExitSetProductButton)
+                    .addComponent(YesSetProductButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout SetProductDailogLayout = new javax.swing.GroupLayout(SetProductDailog.getContentPane());
+        SetProductDailog.getContentPane().setLayout(SetProductDailogLayout);
+        SetProductDailogLayout.setHorizontalGroup(
+            SetProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SetProductDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SetProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        SetProductDailogLayout.setVerticalGroup(
+            SetProductDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SetProductDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        AddMoneyDailog.setTitle("Nạp tiền");
+        AddMoneyDailog.setBackground(new java.awt.Color(232, 254, 254));
+        AddMoneyDailog.setResizable(false);
+        AddMoneyDailog.setSize(new java.awt.Dimension(350, 210));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Nhập số tiền");
+
+        moneyTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("VND");
+
+        YesAddMoneyButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        YesAddMoneyButton.setForeground(new java.awt.Color(0, 204, 0));
+        YesAddMoneyButton.setText("Nạp Tiền");
+        YesAddMoneyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesAddMoneyButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddMoneyDailogLayout = new javax.swing.GroupLayout(AddMoneyDailog.getContentPane());
+        AddMoneyDailog.getContentPane().setLayout(AddMoneyDailogLayout);
+        AddMoneyDailogLayout.setHorizontalGroup(
+            AddMoneyDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddMoneyDailogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddMoneyDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(YesAddMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AddMoneyDailogLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(moneyTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)))
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        AddMoneyDailogLayout.setVerticalGroup(
+            AddMoneyDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddMoneyDailogLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(AddMoneyDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(moneyTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(31, 31, 31)
+                .addComponent(YesAddMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
+        AdminPane.setBackground(new java.awt.Color(235, 254, 254));
         AdminPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jTextField2.setText("                            QUÁN NET ABS VÙNG CAO – NƠI GAME THỦ TỎA SÁNG! ");
+        jTextField2.setText("                            QUÁN NET ADC VÙNG CAO – NƠI GAME THỦ TỎA SÁNG! ");
 
         jTextArea5.setEditable(false);
         jTextArea5.setColumns(20);
         jTextArea5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextArea5.setLineWrap(true);
         jTextArea5.setRows(5);
-        jTextArea5.setText(">>> 1. Giới thiệu chung <<<\n         Chào mừng bạn đến với ABS Vùng Cao – thiên đường giải trí dành cho game thủ! Với hệ thống máy cấu hình siêu khủng, đường truyền siêu tốc và không gian thoải mái – chuyên nghiệp, chúng tôi mang đến trải nghiệm gaming đỉnh cao cho mọi khách hàng.\n\n>>> 2. Cơ sở vật chất & dịch vụ <<<\n         [v] Dàn máy cấu hình cao – Chiến mọi tựa game từ FPS đến MOBA!\n         [v] Ghế gaming êm ái – Ngồi lâu vẫn thoải mái, không đau lưng.\n         [v] Mạng Internet tốc độ cao – Không lo lag, ping cực thấp!\n         [v] Không gian rộng rãi, mát mẻ – Thiết kế hiện đại, có khu vực nghỉ ngơi.\n         [v] Đồ ăn & nước uống đa dạng – Sẵn sàng tiếp năng lượng cho game thủ.\n         [v] Nhân viên hỗ trợ tận tình – Luôn sẵn sàng giúp đỡ bạn.\n\n>>> 3. Ưu đãi hấp dẫn <<<\n         [v] Khuyến mãi giờ chơi – Nạp càng nhiều, thưởng càng lớn!\n         [v] Giải đấu eSports định kỳ – So tài cùng những game thủ xuất sắc.\n         [v] Thành viên VIP – Giảm giá đặc biệt, ưu đãi cực hot!\n\n>>> Thông tin liên hệ <<<\n         Địa chỉ: Một nơi trên Server Này\n         Liên hệ: 0323 232 323\n\n\n\n\n=============================================================================================\n                                                        Hãy đến ABS Vùng Cao và chinh phục mọi trận đấu ngay hôm nay!\n=============================================================================================");
+        jTextArea5.setText(">>> 1. Giới thiệu chung <<<\n         Chào mừng bạn đến với ADC Vùng Cao – thiên đường giải trí dành cho game thủ! Với hệ thống máy cấu hình siêu khủng, đường truyền siêu tốc và không gian thoải mái – chuyên nghiệp, chúng tôi mang đến trải nghiệm gaming đỉnh cao cho mọi khách hàng.\n\n>>> 2. Cơ sở vật chất & dịch vụ <<<\n         [v] Dàn máy cấu hình cao – Chiến mọi tựa game từ FPS đến MOBA!\n         [v] Ghế gaming êm ái – Ngồi lâu vẫn thoải mái, không đau lưng.\n         [v] Mạng Internet tốc độ cao – Không lo lag, ping cực thấp!\n         [v] Không gian rộng rãi, mát mẻ – Thiết kế hiện đại, có khu vực nghỉ ngơi.\n         [v] Đồ ăn & nước uống đa dạng – Sẵn sàng tiếp năng lượng cho game thủ.\n         [v] Nhân viên hỗ trợ tận tình – Luôn sẵn sàng giúp đỡ bạn.\n\n>>> 3. Ưu đãi hấp dẫn <<<\n         [v] Khuyến mãi giờ chơi – Nạp càng nhiều, thưởng càng lớn!\n         [v] Giải đấu eSports định kỳ – So tài cùng những game thủ xuất sắc.\n         [v] Thành viên VIP – Giảm giá đặc biệt, ưu đãi cực hot!\n\n>>> Thông tin liên hệ <<<\n         Địa chỉ: Một nơi trên Server Này\n         Liên hệ: 0323 232 323\n\n\n\n\n=============================================================================================\n                                                        Hãy đến ADC Vùng Cao và chinh phục mọi trận đấu ngay hôm nay!\n=============================================================================================");
         jTextArea5.setWrapStyleWord(true);
         jScrollPane5.setViewportView(jTextArea5);
 
@@ -616,23 +949,24 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(44, 44, 44))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SetAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -646,15 +980,14 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 1289, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,60 +996,21 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(121, 121, 121)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
 
         AdminPane.addTab("Trang chủ", jPanel1);
 
         TableAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "", null, null},
-                {null, null, null, null},
-                {null, "", null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Số thứ tự", "Họ và Tên", "Số điện thoại", "Tiền (VND)"
@@ -737,117 +1031,37 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TableAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableAccountMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableAccount);
 
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setText("Tìm kiếm tài khoản");
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setText("Số điện thoại");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("Nhập số điện thoại");
+        ChoosePhoneTXT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ChoosePhoneTXT.setForeground(new java.awt.Color(0, 0, 204));
 
-        FindPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        FindUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        FindUserButton.setText("Tìm");
-        FindUserButton.addActionListener(new java.awt.event.ActionListener() {
+        InSetUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InSetUserButton.setText("Sửa thông tin tài khoản");
+        InSetUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FindUserButtonActionPerformed(evt);
+                InSetUserButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FindPhoneTXT)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(FindUserButton)
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(FindPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FindUserButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel7.setText("Nhập số điện thoại");
-
-        DeletePhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        DeletePhoneTXT.setForeground(new java.awt.Color(255, 0, 0));
-
         DeleteUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DeleteUserButton.setForeground(new java.awt.Color(255, 0, 0));
-        DeleteUserButton.setText("Xóa");
+        DeleteUserButton.setText("Xóa tài khoản");
         DeleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteUserButtonActionPerformed(evt);
             }
         });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel8.setText("Xóa tài khoản");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeletePhoneTXT)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(127, 127, 127))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addComponent(DeleteUserButton)
-                                .addContainerGap())))))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(DeletePhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeleteUserButton)
-                .addContainerGap())
-        );
 
         RefreshAcconutButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         RefreshAcconutButton.setForeground(new java.awt.Color(0, 204, 0));
@@ -858,21 +1072,19 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel15.setText("Thêm tài khoản");
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel16.setText("Nhập số điện thoại");
-
-        FindAddPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        InAddUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InAddUserButton.setText("Thêm");
-        InAddUserButton.addActionListener(new java.awt.event.ActionListener() {
+        FindUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        FindUserButton.setText("Tìm tài khoản");
+        FindUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InAddUserButtonActionPerformed(evt);
+                FindUserButtonActionPerformed(evt);
+            }
+        });
+
+        AddMoneyButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddMoneyButton.setText("Nạp tiền cho khách");
+        AddMoneyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddMoneyButtonActionPerformed(evt);
             }
         });
 
@@ -880,85 +1092,51 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(0, 90, Short.MAX_VALUE)
+                .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DeleteUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FindAddPhoneTXT))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InAddUserButton)))
+                        .addComponent(ChoosePhoneTXT))
+                    .addComponent(InSetUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FindUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AddMoneyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(121, 121, 121))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(jLabel15)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ChoosePhoneTXT)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel16)
-                    .addComponent(FindAddPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InAddUserButton)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
-        jPanel14.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel17.setText("Sửa thông tin tài khoản");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel18.setText("Nhập số điện thoại");
-
-        FindSetPhoneTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        InSetUserButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InSetUserButton.setText("Sửa");
-        InSetUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InSetUserButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FindSetPhoneTXT))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InSetUserButton)))
-                .addContainerGap())
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel17)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18)
-                    .addComponent(FindSetPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(FindUserButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(InSetUserButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddMoneyButton)
+                .addGap(18, 18, 18)
+                .addComponent(DeleteUserButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
+
+        InAddUserButton.setBackground(new java.awt.Color(241, 254, 254));
+        InAddUserButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        InAddUserButton.setText("Thêm tài khoản khách");
+        InAddUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InAddUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -966,37 +1144,24 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(148, 148, 148))))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InAddUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(InAddUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RefreshAcconutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1032,25 +1197,12 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TableComuper);
 
-        ShutDownALLButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        ShutDownALLButton.setForeground(new java.awt.Color(255, 0, 0));
-        ShutDownALLButton.setText("TẮT HỆ THỐNG MÁY");
-
         InAddComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         InAddComputerButton.setForeground(new java.awt.Color(0, 0, 255));
         InAddComputerButton.setText("Thêm máy");
         InAddComputerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InAddComputerButtonActionPerformed(evt);
-            }
-        });
-
-        RefeshComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        RefeshComputerButton.setForeground(new java.awt.Color(0, 153, 51));
-        RefeshComputerButton.setText("Làm mới");
-        RefeshComputerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefeshComputerButtonActionPerformed(evt);
             }
         });
 
@@ -1080,6 +1232,20 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         ShutDownComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ShutDownComputerButton.setForeground(new java.awt.Color(204, 0, 0));
         ShutDownComputerButton.setText("Tắt máy");
+        ShutDownComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShutDownComputerButtonActionPerformed(evt);
+            }
+        });
+
+        RefeshComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        RefeshComputerButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefeshComputerButton.setText("Làm mới");
+        RefeshComputerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefeshComputerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JpLayout = new javax.swing.GroupLayout(Jp);
         Jp.setLayout(JpLayout);
@@ -1096,6 +1262,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addComponent(DeleteComputerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ShutDownComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(JpLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(RefeshComputerButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpLayout.setVerticalGroup(
             JpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1110,7 +1280,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addComponent(DeleteComputerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ShutDownComputerButton)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(RefeshComputerButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1119,18 +1291,12 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(RefeshComputerButton)
-                        .addGap(69, 69, 69))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ShutDownALLButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(InAddComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Jp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(InAddComputerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Jp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1138,14 +1304,11 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(InAddComputerButton)
+                        .addComponent(InAddComputerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ShutDownALLButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
-                        .addComponent(RefeshComputerButton))
-                    .addComponent(jScrollPane2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1221,7 +1384,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(RefeshOderButton)
                 .addGap(54, 54, 54))
         );
@@ -1264,7 +1427,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(204, 204, 204));
@@ -1313,7 +1476,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(SumMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CompleteOderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -1337,14 +1500,144 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         AdminPane.addTab("Đơn hàng", jPanel5);
+
+        TableProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã hàng", "Tên hàng", "Số lượng có", "Giá tiền 1 sản phẩm", "Loại hàng"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableProductMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(TableProduct);
+
+        InAddProductButton.setBackground(new java.awt.Color(243, 255, 255));
+        InAddProductButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        InAddProductButton.setText("Thêm mặt hàng");
+        InAddProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InAddProductButtonActionPerformed(evt);
+            }
+        });
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Mã hàng");
+
+        InSetProductButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InSetProductButton.setText("Sửa thông tin mặt hàng");
+        InSetProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InSetProductButtonActionPerformed(evt);
+            }
+        });
+
+        DeleteProductButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        DeleteProductButton.setForeground(new java.awt.Color(204, 0, 0));
+        DeleteProductButton.setText("Xóa mặt hàng");
+        DeleteProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteProductButtonActionPerformed(evt);
+            }
+        });
+
+        RefreshProductButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        RefreshProductButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefreshProductButton.setText("Làm mới");
+        RefreshProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshProductButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ProductID_TXT))
+                    .addComponent(InSetProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeleteProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(RefreshProductButton)
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(ProductID_TXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InSetProductButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeleteProductButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(RefreshProductButton)
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InAddProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(InAddProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 342, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        AdminPane.addTab("Mặt hàng", jPanel7);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 255));
@@ -1380,14 +1673,15 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(924, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(AdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1397,9 +1691,8 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, 693, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addComponent(AdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, 693, Short.MAX_VALUE))
         );
 
         pack();
@@ -1414,7 +1707,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this, "XÁC NHẬN ĐĂNG XUẤT", 
-                "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                "THÔNG BÁO", JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             this.setVisible(false);
             new HomeJFrame().setVisible(true);
@@ -1429,13 +1722,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void InSetUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InSetUserButtonActionPerformed
         // TODO add your handling code here:
         UserService userService = new UserService();
-        User user = userService.findUser(FindSetPhoneTXT.getText());
+        User user = userService.findUser(ChoosePhoneTXT.getText());
         if(user != null) {
             this.setVisible(false);
-            new SetInfoJFrame(FindSetPhoneTXT.getText(), Role.ADMIN).setVisible(true);
+            new SetInfoJFrame(ChoosePhoneTXT.getText(), Role.ADMIN).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
-                    "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_InSetUserButtonActionPerformed
 
@@ -1448,7 +1741,6 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
     private void YesAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddUserButtonActionPerformed
         // TODO add your handling code here:
-        AddUserDailog.setVisible(false);
         if(PhoneAddTXT.getText().isBlank() || NameAddTXT.getText().isBlank() ||
                     String.valueOf(PassAddTXT.getPassword()).isBlank() || String.valueOf(PassAC_AddTXT.getPassword()).isBlank()){
             JOptionPane.showMessageDialog(this,"Không để trống thông tin",
@@ -1459,12 +1751,13 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             User user = userService.findUser(PhoneAddTXT.getText());
             if(user != null) {
                 JOptionPane.showMessageDialog(this,"Tài khoản đã tồn tại",
-                        "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        "Thông báo", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             userService.addUser(new User(PhoneAddTXT.getText(), NameAddTXT.getText(),
                     BCrypt.hashpw(String.valueOf(PassAC_AddTXT.getPassword()),BCrypt.gensalt()), 0, Role.USER));
         }
+        AddUserDailog.setVisible(false);
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
         JOptionPane.showMessageDialog(this,"Đã thêm thành công",
                 "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1473,7 +1766,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void ExitAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitAddUserButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION)
             AddUserDailog.setVisible(false);
     }//GEN-LAST:event_ExitAddUserButtonActionPerformed
@@ -1491,6 +1784,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{count, user.getName(), user.getPhone(), user.getMoney()});
             }
         }
+        JOptionPane.showMessageDialog(this,"Đã làm mới", "Thông báo",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_RefreshAcconutButtonActionPerformed
 
     private void FindUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindUserButtonActionPerformed
@@ -1498,10 +1792,10 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TableAccount.getModel();
         model.setRowCount(0); // Xóa toàn bộ dữ liệu nhưng giữ lại các cột
         UserService userService = new UserService();
-        User user = userService.findUser(FindPhoneTXT.getText());
-        if(user == null) {
+        User user = userService.findUser(ChoosePhoneTXT.getText());
+        if(user == null || ChoosePhoneTXT.getText().equals(PhoneNow.getText())) {
             JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
-                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
         model.addRow(new Object[]{1, user.getName(), user.getPhone(), user.getMoney()});
@@ -1510,14 +1804,14 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void DeleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserButtonActionPerformed
         // TODO add your handling code here:
         UserService userService = new UserService();
-        User user = userService.findUser(DeletePhoneTXT.getText());
+        User user = userService.findUser(ChoosePhoneTXT.getText());
         if(user == null) {
             JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại",
-                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận xóa",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             userService.deleteUser(user);
             ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
@@ -1547,7 +1841,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void ExitAddComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitAddComputerButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION)
             AddComputerDailog.setVisible(false);
     }//GEN-LAST:event_ExitAddComputerButtonActionPerformed
@@ -1555,7 +1849,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private void ExitSetComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitSetComputerButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION)
             SetComputerDailog.setVisible(false);
     }//GEN-LAST:event_ExitSetComputerButtonActionPerformed
@@ -1566,7 +1860,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         Computer computer = computerService.findComputer(String.valueOf(NameComputerTXT.getText()));
         if(computer == null) {
             JOptionPane.showMessageDialog(this,"Máy không tồn tại",
-                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
         AddStatusComputerTXT.removeAllItems();
@@ -1588,12 +1882,12 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         Computer computer = computerService.findComputer(AddNameComputerTXT.getText());
         if(computer != null) {
             JOptionPane.showMessageDialog(this,"Tên máy đã tồn tại",
-                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận thêm",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             computer = computerService.setNewComputer(
                     AddNameComputerTXT.getText(),
@@ -1616,7 +1910,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         }
 
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận sửa",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             ComputerService computerService = new ComputerService();
             computerService.deleteComputer(
@@ -1639,12 +1933,12 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         Computer computer = computerService.findComputer(String.valueOf(NameComputerTXT.getText()));
         if(computer == null) {
             JOptionPane.showMessageDialog(this,"Máy không tồn tại",
-                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận xóa",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+                "Thông báo",JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION){
             computerService.deleteComputer(computer);
             ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
@@ -1666,6 +1960,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             else
                 model.addRow(new Object[]{computer.getName(), computer.getStatus().getDescription()});
         }
+        JOptionPane.showMessageDialog(this,"Đã làm mới", "Thông báo",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_RefeshComputerButtonActionPerformed
 
     private void TableComuperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableComuperMouseClicked
@@ -1676,6 +1971,195 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             NameComputerTXT.setText(col1);
         }
     }//GEN-LAST:event_TableComuperMouseClicked
+
+    private void ShutDownComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShutDownComputerButtonActionPerformed
+        // TODO add your handling code here:
+        ComputerService computerService = new ComputerService();
+        Computer computer = computerService.findComputer(NameComputerTXT.getText());
+        if(computer == null){
+            JOptionPane.showMessageDialog(this,"Máy không tồn tại",
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(computer.getUser() != null){
+            computerService.deleteComputer(computer);
+            computerService.addComputer(
+                    computerService.setNewComputer(computer.getName(),computer.getStatus().getDescription())
+            );
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã tắt thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        } else {
+            JOptionPane.showMessageDialog(this, "Máy không hoạt động",
+                    "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ShutDownComputerButtonActionPerformed
+
+    private void TableAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAccountMouseClicked
+        // TODO add your handling code here:
+        int checkClick = TableAccount.getSelectedRow();
+        if(checkClick != -1){
+            String phone = TableAccount.getValueAt(checkClick,2).toString();
+            ChoosePhoneTXT.setText(phone);
+        }
+    }//GEN-LAST:event_TableAccountMouseClicked
+
+    private void ExitAddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitAddProductButtonActionPerformed
+        // TODO add your handling code here:
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
+                "Thông báo",JOptionPane.OK_OPTION);
+        if(check == JOptionPane.OK_OPTION)
+            AddProductDailog.setVisible(false);
+    }//GEN-LAST:event_ExitAddProductButtonActionPerformed
+
+    private void YesAddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddProductButtonActionPerformed
+        // TODO add your handling code here:
+        if(AddNameProductTXT.getText().isBlank() || AddPriceProductTXT.getText().isBlank() ||
+                AddQuantityProductTXT.getText().isBlank() || AddTypeProductTXT.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this,"Không để thông tin trống",
+                    "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            double parsedPrice = Double.parseDouble(AddPriceProductTXT.getText());
+            int parsedQuantity = Integer.parseInt(AddQuantityProductTXT.getText());
+            ProductService productService = new ProductService();
+            productService.addProduct(
+                    productService.setNewProduct(new Product(),AddNameProductTXT.getText(),parsedPrice,parsedQuantity,AddTypeProductTXT.getSelectedIndex())
+            );
+            AddProductDailog.setVisible(false);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã thêm thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Thông tin giá tiền hoặc số lượng không hợp lệ",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_YesAddProductButtonActionPerformed
+
+    private void AddTypeProductTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTypeProductTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddTypeProductTXTActionPerformed
+
+    private void ExitSetProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitSetProductButtonActionPerformed
+        // TODO add your handling code here:
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
+                "Thông báo",JOptionPane.OK_OPTION);
+        if(check == JOptionPane.OK_OPTION)
+            SetProductDailog.setVisible(false);
+    }//GEN-LAST:event_ExitSetProductButtonActionPerformed
+
+    private void YesSetProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesSetProductButtonActionPerformed
+        // TODO add your handling code here:
+        if(SetNameProductTXT.getText().isBlank() || SetPriceProductTXT.getText().isBlank() ||
+                SetQuantityProductTXT.getText().isBlank() || SetTypeProductTXT.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this,"Không để thông tin trống",
+                    "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            double parsedPrice = Double.parseDouble(SetPriceProductTXT.getText());
+            int parsedQuantity = Integer.parseInt(SetQuantityProductTXT.getText());
+            ProductService productService = new ProductService();
+            Product product = productService.FindProduct(Integer.parseInt(ProductID_TXT.getText()));
+            productService.addProduct(
+                    productService.setNewProduct(product,SetNameProductTXT.getText(),parsedPrice,parsedQuantity,SetTypeProductTXT.getSelectedIndex())
+            );
+            SetProductDailog.setVisible(false);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Thông tin giá tiền hoặc số lượng không hợp lệ",
+                    "Thông báo",JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_YesSetProductButtonActionPerformed
+
+    private void SetTypeProductTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetTypeProductTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SetTypeProductTXTActionPerformed
+
+    private void InAddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InAddProductButtonActionPerformed
+        // TODO add your handling code here:
+        AddProductDailog.setVisible(true);
+    }//GEN-LAST:event_InAddProductButtonActionPerformed
+
+    private void InSetProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InSetProductButtonActionPerformed
+        // TODO add your handling code here:
+        ProductService productService = new ProductService();
+        Product product = productService.FindProduct(Integer.parseInt(ProductID_TXT.getText()));
+        if(product == null){
+            JOptionPane.showMessageDialog(this,"Mặt hàng không tồn tại",
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        SetNameProductTXT.setText(product.getName());
+        SetPriceProductTXT.setText(String.valueOf(product.getPrice()));
+        SetQuantityProductTXT.setText(String.valueOf(product.getQuantity()));
+        SetTypeProductTXT.setSelectedIndex(product.getCategory());
+        SetProductDailog.setVisible(true);
+    }//GEN-LAST:event_InSetProductButtonActionPerformed
+
+    private void DeleteProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductButtonActionPerformed
+        // TODO add your handling code here:
+        ProductService productService = new ProductService();
+        Product product = productService.FindProduct(Integer.parseInt(ProductID_TXT.getText()));
+        if(product == null) {
+            JOptionPane.showMessageDialog(this,"Mặt hàng không tồn tại",
+                    "Thông báo",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int check = JOptionPane.showConfirmDialog(this,"Xác nhận xóa",
+                "Thông báo", JOptionPane.OK_OPTION);
+        if(check == JOptionPane.OK_OPTION){
+            productService.deleteProduct(product);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã xóa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_DeleteProductButtonActionPerformed
+
+    private void RefreshProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshProductButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TableProduct.getModel();
+        model.setRowCount(0);
+        ProductService productService = new ProductService();
+        ArrayList<Product> products = productService.selectAllProduct();
+        for(Product product : products){
+            String type = (product.getCategory() == 2 ? "Đồ uống" : "Đồ ăn");
+            model.addRow(new Object[]{
+                    product.getId(), product.getName(), product.getQuantity(), product.getPrice(), type});
+        }
+        JOptionPane.showMessageDialog(this,"Đã làm mới", "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_RefreshProductButtonActionPerformed
+
+    private void TableProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProductMouseClicked
+        // TODO add your handling code here:
+        int checkClick = TableProduct.getSelectedRow();
+        if(checkClick != -1)
+            ProductID_TXT.setText(String.valueOf(TableProduct.getValueAt(checkClick, 0).toString()));
+    }//GEN-LAST:event_TableProductMouseClicked
+
+    private void AddMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMoneyButtonActionPerformed
+        // TODO add your handling code here:
+        AddMoneyDailog.setVisible(true);
+    }//GEN-LAST:event_AddMoneyButtonActionPerformed
+
+    private void YesAddMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddMoneyButtonActionPerformed
+        // TODO add your handling code here:
+        UserService userService = new UserService();
+        User user = userService.findUser(ChoosePhoneTXT.getText());
+        user.setMoney(Integer.parseInt(moneyTXT.getText()));
+        userService.addUser(user);
+        AddMoneyDailog.setVisible(false);
+        JOptionPane.showMessageDialog(this,"Nạp tiền thành công",
+            "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_YesAddMoneyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1716,25 +2200,34 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JOptionPane AC_Option;
     private javax.swing.JDialog AddComputerDailog;
+    private javax.swing.JButton AddMoneyButton;
+    private javax.swing.JDialog AddMoneyDailog;
     private javax.swing.JTextField AddNameComputerTXT;
+    private javax.swing.JTextField AddNameProductTXT;
+    private javax.swing.JTextField AddPriceProductTXT;
+    private javax.swing.JDialog AddProductDailog;
+    private javax.swing.JTextField AddQuantityProductTXT;
     private javax.swing.JComboBox<String> AddStatusComputerTXT;
+    private javax.swing.JComboBox<String> AddTypeProductTXT;
     private javax.swing.JDialog AddUserDailog;
     private javax.swing.JTabbedPane AdminPane;
     private javax.swing.JDialog CheckOTP_Dailog;
+    private javax.swing.JTextField ChoosePhoneTXT;
     private javax.swing.JButton CompleteOderButton;
     private javax.swing.JButton DeleteComputerButton;
-    private javax.swing.JTextField DeletePhoneTXT;
+    private javax.swing.JButton DeleteProductButton;
     private javax.swing.JButton DeleteUserButton;
     private javax.swing.JButton ExitAddComputerButton;
+    private javax.swing.JButton ExitAddProductButton;
     private javax.swing.JButton ExitAddUserButton;
     private javax.swing.JButton ExitSetComputerButton;
-    private javax.swing.JTextField FindAddPhoneTXT;
-    private javax.swing.JTextField FindPhoneTXT;
-    private javax.swing.JTextField FindSetPhoneTXT;
+    private javax.swing.JButton ExitSetProductButton;
     private javax.swing.JButton FindUserButton;
     private javax.swing.JButton InAddComputerButton;
+    private javax.swing.JButton InAddProductButton;
     private javax.swing.JButton InAddUserButton;
     private javax.swing.JButton InSetComputerButton;
+    private javax.swing.JButton InSetProductButton;
     private javax.swing.JButton InSetUserButton;
     private javax.swing.JPanel Jp;
     private javax.swing.JButton LogoutButton;
@@ -1744,23 +2237,33 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField PassAddTXT;
     private javax.swing.JTextField PhoneAddTXT;
     private javax.swing.JTextField PhoneNow;
+    private javax.swing.JTextField ProductID_TXT;
     private javax.swing.JButton RefeshComputerButton;
     private javax.swing.JButton RefeshOderButton;
     private javax.swing.JButton RefreshAcconutButton;
+    private javax.swing.JButton RefreshProductButton;
     private javax.swing.JButton SetAdminButton;
     private javax.swing.JDialog SetComputerDailog;
     private javax.swing.JTextField SetNameComputerTXT;
+    private javax.swing.JTextField SetNameProductTXT;
+    private javax.swing.JTextField SetPriceProductTXT;
+    private javax.swing.JDialog SetProductDailog;
+    private javax.swing.JTextField SetQuantityProductTXT;
     private javax.swing.JComboBox<String> SetStatusComputerTXT;
-    private javax.swing.JButton ShutDownALLButton;
+    private javax.swing.JComboBox<String> SetTypeProductTXT;
     private javax.swing.JButton ShutDownComputerButton;
     private javax.swing.JTextField SumMoney;
     private javax.swing.JTable TableAccount;
     private javax.swing.JTable TableComuper;
     private javax.swing.JTable TableDetailOder;
     private javax.swing.JTable TableOder;
+    private javax.swing.JTable TableProduct;
     private javax.swing.JButton YesAddComputerButton;
+    private javax.swing.JButton YesAddMoneyButton;
+    private javax.swing.JButton YesAddProductButton;
     private javax.swing.JButton YesAddUserButton;
     private javax.swing.JButton YesSetComputerButton;
+    private javax.swing.JButton YesSetProductButton;
     private javax.swing.JLabel computerIcon;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1770,10 +2273,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1789,23 +2289,33 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1818,9 +2328,11 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField moneyTXT;
     // End of variables declaration//GEN-END:variables
 }
