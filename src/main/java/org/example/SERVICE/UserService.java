@@ -17,7 +17,8 @@ public class UserService {
     }
 
     public User findUser(String  phone){
-       return entityManager.find(User.class,phone);
+        entityManager.clear();
+        return entityManager.find(User.class,phone);
     }
 
     public void addUser(User user){

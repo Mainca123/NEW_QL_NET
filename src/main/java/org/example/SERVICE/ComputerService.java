@@ -1,14 +1,11 @@
 package org.example.SERVICE;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.Computer.Status;
-import org.example.ENTITY.USER.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.example.DAO.Main.entityManager;
 

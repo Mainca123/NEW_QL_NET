@@ -4,8 +4,10 @@
  */
 package org.example.VIEW.TogetherSERVICE;
 
+import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
+import org.example.SERVICE.ComputerService;
 import org.example.SERVICE.UserService;
 import org.example.VIEW.BOSS.HomeBossJFrame;
 import org.example.VIEW.USER.HomeUserJFrame;
@@ -198,25 +200,39 @@ public class SetInfoJFrame extends javax.swing.JFrame {
                 "THÔNG BÁO", JOptionPane.OK_OPTION);
         if(check == JOptionPane.OK_OPTION) {
             UserService userService = new UserService();
-            User oldUser = userService.findUser(PhoneNow.getText());
             if(userService.checkPAss(this.SetPassTXT.getPassword(),this.SetPassACTXT.getPassword())){
-                User newUser = userService.setUser(
-                        oldUser,this.SetPhoneTXT.getText(), this.SetNameTXT.getText(), this.SetPassACTXT.getPassword());
-                userService.deleteUser(oldUser);
-                userService.addUser(newUser);
-                this.PhoneNow.setText(newUser.getPhone());
                 if(RoleNow.getText().equals(String.valueOf(Role.ADMIN))){
+                    User oldUser = userService.findUser(PhoneNow.getText());
+                    userService.deleteUser(oldUser);
+                    User newUser = userService.setUser(
+                            oldUser,this.SetPhoneTXT.getText(), this.SetNameTXT.getText(), this.SetPassACTXT.getPassword());
+                    userService.addUser(newUser);
+                    this.PhoneNow.setText(newUser.getPhone());
                     this.setVisible(false);
                     new HomeBossJFrame(this.PhoneNow.getText()).setVisible(true);
-                    return;
+                } else {
+                    ComputerService computerService = new ComputerService();
+                    Computer computer = computerService.findUserComputer(PhoneNow.getText());
+                    computerService.deleteComputer(computer);
+                    User oldUser = userService.findUser(PhoneNow.getText());
+                    userService.deleteUser(oldUser);
+                    User newUser = userService.setUser(
+                            oldUser,this.SetPhoneTXT.getText(), this.SetNameTXT.getText(), this.SetPassACTXT.getPassword());
+                    userService.addUser(newUser);
+                    computer.setUser(newUser);
+                    computerService.addComputer(computer);
+                    this.PhoneNow.setText(newUser.getPhone());
+                    this.setVisible(false);
+                    new HomeUserJFrame(this.PhoneNow.getText()).setVisible(true);
                 }
-                this.setVisible(false);
-                new HomeUserJFrame(this.PhoneNow.getText()).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this,"Mật khẩu không khấp",
                         "Thông báo",JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+            JOptionPane.showMessageDialog(this, "Đã sửa thành công",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_YesSetInforButtonActionPerformed
 
@@ -225,8 +241,13 @@ public class SetInfoJFrame extends javax.swing.JFrame {
         int check = JOptionPane.showConfirmDialog(this,"Xác nhận hủy",
                 "Thông báo",JOptionPane.INFORMATION_MESSAGE);
         if(check == JOptionPane.OK_OPTION){
+            if(RoleNow.getText().equals(String.valueOf(Role.ADMIN))){
+                this.setVisible(false);
+                new HomeBossJFrame(this.PhoneNow.getText()).setVisible(true);
+                return;
+            }
             this.setVisible(false);
-            new HomeBossJFrame().setVisible(true);
+            new HomeUserJFrame(this.PhoneNow.getText()).setVisible(true);
         }
     }//GEN-LAST:event_ExitSetInforButtonActionPerformed
 

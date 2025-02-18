@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.util.Arrays;
 
 import org.example.ENTITY.USER.Role;
+import org.example.SERVICE.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.example.ENTITY.USER.User;
 import org.example.VIEW.BOSS.HomeBossJFrame;
@@ -297,7 +298,8 @@ public class HomeJFrame extends javax.swing.JFrame {
             return;
         }
 
-        User user = entityManager.find(User.class, phone);
+        UserService userService = new UserService();
+        User user = userService.findUser(phone);
         if(user == null){
             JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại !",
                     "Thông báo",JOptionPane.OK_OPTION);

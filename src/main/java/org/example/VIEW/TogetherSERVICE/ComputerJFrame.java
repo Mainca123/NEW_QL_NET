@@ -202,6 +202,13 @@ public class ComputerJFrame extends javax.swing.JFrame {
                     "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        if(computer.getStatus().equals(Status.OUT_OF_ORDER)) {
+            JOptionPane.showMessageDialog(this,"Máy đang hỏng",
+                    "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
         JOptionPane.showMessageDialog(this,"Đăng nhập thành công",
                 "Thông báo",JOptionPane.INFORMATION_MESSAGE, icon);

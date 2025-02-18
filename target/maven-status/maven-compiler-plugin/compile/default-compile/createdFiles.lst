@@ -8,4 +8,6 @@ org\example\VIEW\BOSS\HomeBossJFrame$18.class
 org\example\VIEW\BOSS\HomeBossJFrame$15.class
 org\example\VIEW\BOSS\HomeBossJFrame$20.class
 org\example\DAO\HibernateUtil.class
+org\example\VIEW\USER\HomeUserJFrame$12.class
 org\example\VIEW\BOSS\HomeBossJFrame$19.class
+org\example\VIEW\USER\HomeUserJFrame$13.class

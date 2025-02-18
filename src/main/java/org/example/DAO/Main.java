@@ -5,6 +5,7 @@ import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
 import org.example.SERVICE.UserService;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class Main {
                 break;
             }
         if(!check)
-            userService.addUser(new User("0123456789","Admin","0000",0, Role.ADMIN));
+            userService.addUser(new User("0123456789","Admin", BCrypt.hashpw("0000", BCrypt.gensalt()),0, Role.ADMIN));
     }
     public static EntityManager entityManager = HibernateUtil.getEntityManager();
 }

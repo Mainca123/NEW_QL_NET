@@ -4,30 +4,37 @@
  */
 package org.example.VIEW.USER;
 
+import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.Computer.Status;
+import org.example.ENTITY.Order.A_Order;
+import org.example.ENTITY.Order.OrderProduct;
+import org.example.ENTITY.Order.Product;
 import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
-import org.example.SERVICE.ComputerService;
-import org.example.SERVICE.UserService;
+import org.example.SERVICE.*;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.example.VIEW.TogetherSERVICE.SetInfoJFrame;
 
 import javax.swing.*;
-import static org.example.DAO.Main.entityManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author HELLO MAIN_CA
  */
 public class HomeUserJFrame extends javax.swing.JFrame {
+
+    private ProductService productService;
+    private ProductService productService1;
 
     /**
      * Creates new form HomeUserJFrame
@@ -79,18 +86,17 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
             timeUser.setText(hoursUsed + ":" + minutesUsed + ":" + secondsUsed);
             lastTime.setText(hoursLeft + ":" + minutesLeft + ":" + secondsLeftMod);
-            if(userService.findUser(PhoneUserTXT.getText()).getMoney() != -5)
-                user.setMoney((int)moneyLeft);
-            else {
+            if(userService.findUser(PhoneUserTXT.getText()).getMoney() == -5){
+                this.setVisible(false);
+                new HomeJFrame().setVisible(true);
                 JOptionPane.showMessageDialog(this,"Bạn đã bị kích",
                         "Thông báo",JOptionPane.WARNING_MESSAGE);
                 user.setMoney((int)moneyLeft);
                 userService.addUser(user);
-                this.setVisible(false);
-                new HomeJFrame().setVisible(true);
                 scheduler.shutdown();
                 return;
             }
+            user.setMoney((int)moneyLeft);
             userService.addUser(user);
             // Kiểm tra hết tiền
             if (moneyLeft <= 0) {
@@ -125,21 +131,15 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         AddMoneyButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         OderDialog = new javax.swing.JDialog();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        Uong3 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        Do1 = new javax.swing.JCheckBox();
-        Do2 = new javax.swing.JCheckBox();
-        Do3 = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
-        Uong1 = new javax.swing.JCheckBox();
-        Uong2 = new javax.swing.JCheckBox();
         OderButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        ComputerNameTXT = new javax.swing.JTextField();
+        Reload = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        MenuTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        SumMoneyNow = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         desktop = new javax.swing.JDesktopPane();
         mainBoard = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
@@ -211,123 +211,15 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
+        OderDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         OderDialog.setTitle("Đặt hàng online");
         OderDialog.setAlwaysOnTop(true);
         OderDialog.setLocation(new java.awt.Point(350, 200));
         OderDialog.setModal(true);
         OderDialog.setResizable(false);
-        OderDialog.setSize(new java.awt.Dimension(558, 555));
+        OderDialog.setSize(new java.awt.Dimension(685, 660));
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jPanel2.setBackground(new java.awt.Color(246, 254, 254));
-
-        Uong3.setText("Đồ uống 3");
-        Uong3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Uong3ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Đồ Ăn");
-
-        jCheckBox1.setText("Đồ ăn 4");
-
-        Do1.setText("Đồ ăn 1");
-        Do1.setActionCommand("JCheckBox1");
-        Do1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Do1ActionPerformed(evt);
-            }
-        });
-
-        Do2.setText("Đồ ăn 2");
-
-        Do3.setText("Đồ ăn 3");
-        Do3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Do3ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Đồ Uống");
-
-        Uong1.setText("Đồ uống 1");
-        Uong1.setActionCommand("JCheckBox1");
-        Uong1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Uong1ActionPerformed(evt);
-            }
-        });
-
-        Uong2.setText("Đồ uống 2");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Uong1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Do2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Do1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Do3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Uong3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Uong2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(376, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Do1)
-                .addGap(4, 4, 4)
-                .addComponent(Do2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Do3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addGap(72, 72, 72)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Uong1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Uong2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Uong3)
-                .addContainerGap(197, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jScrollPane1.setViewportView(jPanel1);
-
+        OderButton.setBackground(new java.awt.Color(238, 254, 254));
         OderButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         OderButton.setText("Đặt hàng");
         OderButton.addActionListener(new java.awt.event.ActionListener() {
@@ -338,41 +230,120 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel8.setText("MENU");
+        jLabel8.setText("MENU ");
+
+        Reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Reload.setForeground(new java.awt.Color(0, 204, 0));
+        Reload.setText("Làm mới");
+        Reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReloadActionPerformed(evt);
+            }
+        });
+
+        MenuTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "id", "Tên hàng", "Giá tiền", "Số lượng cần mua"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        MenuTable.setAlignmentX(10.0F);
+        MenuTable.setAlignmentY(10.0F);
+        MenuTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(MenuTable);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel5.setText("Tổng tiền");
+
+        SumMoneyNow.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SumMoneyNow.setForeground(new java.awt.Color(204, 0, 0));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel6.setText("VND");
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 204, 51));
+        jTextField1.setText("Hãy nhập số lượng cần mua để chọn hàng");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout OderDialogLayout = new javax.swing.GroupLayout(OderDialog.getContentPane());
         OderDialog.getContentPane().setLayout(OderDialogLayout);
         OderDialogLayout.setHorizontalGroup(
             OderDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OderDialogLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
-            .addGroup(OderDialogLayout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OderDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap()
+                .addGroup(OderDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OderDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SumMoneyNow, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Reload)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(OderDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1)))
+                .addGap(0, 98, Short.MAX_VALUE))
         );
         OderDialogLayout.setVerticalGroup(
             OderDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OderDialogLayout.createSequentialGroup()
-                .addComponent(jLabel8)
+                .addContainerGap()
+                .addGroup(OderDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(OderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(OderDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SumMoneyNow, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(OderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 102, Short.MAX_VALUE))
         );
-
-        ComputerNameTXT.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("User Desktop");
         setBackground(new java.awt.Color(224, 224, 224));
-        setPreferredSize(new java.awt.Dimension(1200, 740));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 740));
 
@@ -437,6 +408,8 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         });
 
         jLabel9.setText("Số điện thoại");
+
+        PhoneUserTXT.setEditable(false);
 
         javax.swing.GroupLayout mainBoardLayout = new javax.swing.GroupLayout(mainBoard.getContentPane());
         mainBoard.getContentPane().setLayout(mainBoardLayout);
@@ -522,7 +495,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
             .addGroup(desktopLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(mainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                 .addComponent(UserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -549,30 +522,69 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
     private void FoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FoodActionPerformed
         // TODO add your handling code here:
+        // Ẩn cột "id" (cột ở chỉ số 0)
+        MenuTable.getColumnModel().getColumn(0).setMinWidth(0);
+        MenuTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        MenuTable.getColumnModel().getColumn(0).setWidth(0);
         OderDialog.setVisible(true);
+        
     }//GEN-LAST:event_FoodActionPerformed
-
-    private void Do1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Do1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Do1ActionPerformed
-
-    private void Do3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Do3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Do3ActionPerformed
-
-    private void Uong1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Uong1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Uong1ActionPerformed
-
-    private void Uong3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Uong3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Uong3ActionPerformed
 
     private void OderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OderButtonActionPerformed
         // TODO add your handling code here:
+        TableModel tableModel = MenuTable.getModel();
+        int valueInInt = 0;
+        String valueInColumn3 = "";
+        double tong = 0;
+        ProductService productService = new ProductService();
+
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            try {
+                valueInColumn3 = tableModel.getValueAt(i, 3).toString().trim();
+                valueInInt = Integer.parseInt(valueInColumn3);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Giá trị số lượng không hợp lệ!",
+                        "Lỗi", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Product product = productService.FindProduct((int) tableModel.getValueAt(i, 0));
+            tong += valueInInt * product.getPrice();
+        }
+
+        SumMoneyNow.setText(String.valueOf(tong));
         OderDialog.setVisible(false);
-        JOptionPane.showMessageDialog(this,"Đặt hàng thành công",
-                "Thông báo",JOptionPane.INFORMATION_MESSAGE);
+        if(SumMoneyNow.getText().equals("0.0") || SumMoneyNow.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this,"Chưa chọn mặt hàng",
+                    "Chưa đặt hàng", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        TableModel table = MenuTable.getModel();
+        UserService userService = new UserService();
+        A_OrderService aOrderService = new A_OrderService();
+        User user = userService.findUser(PhoneUserTXT.getText());
+        A_Order aOrder = new A_Order(user);
+        aOrderService.addAOrder(aOrder);
+        OderProductService oderProductService = new OderProductService();
+        for(int i=0; i< table.getRowCount(); i++){
+            int id = (int) table.getValueAt(i,0);
+            int quantity = 0;
+            try {
+                quantity = Integer.parseInt(table.getValueAt(i,3).toString().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this,"Có số lượng nhập không hợp lệ",
+                        "Lỗi",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if(quantity <0 ) {
+                Product product = productService.FindProduct(id);
+                OrderProduct orderProduct = new OrderProduct(aOrder, product, quantity);
+                oderProductService.AddOrder(orderProduct);
+            }
+        }
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+        JOptionPane.showMessageDialog(this, "Đặt hàng thành công",
+                "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_OderButtonActionPerformed
 
     private void lastTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastTimeActionPerformed
@@ -587,7 +599,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
     private void LogoutUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutUserButtonActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this, "XÁC NHẬN ĐĂNG XUẤT", 
-                "THÔNG BÁO", JOptionPane.NO_OPTION);
+                "THÔNG BÁO", JOptionPane.OK_OPTION);
         ComputerService computerService = new ComputerService();
         Computer computer = computerService.findUserComputer(PhoneUserTXT.getText());
         if(check == JOptionPane.OK_OPTION) {
@@ -612,6 +624,65 @@ public class HomeUserJFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new SetInfoJFrame(PhoneUserTXT.getText(), Role.USER).setVisible(true);
     }//GEN-LAST:event_SetUserButtonActionPerformed
+
+    private void ReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReloadActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) MenuTable.getModel();
+        ProductService productService = new ProductService();
+        model.setRowCount(0);
+        List<Product> products = productService.selectAllProduct();
+            for (Product c : products) {
+                model.addRow(new Object[]{c.getId(), c.getName(), c.getPrice(),0});
+            }
+    }//GEN-LAST:event_ReloadActionPerformed
+
+    private void MenuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuTableMouseClicked
+        // TODO add your handling code here:
+        int row = MenuTable.getSelectedRow();
+        int column = 3;
+        TableModel tableModel = MenuTable.getModel();
+        String valueInColumn3 = tableModel.getValueAt(row, column).toString();
+        int valueInInt = 0;
+
+        try {
+            valueInInt = Integer.parseInt(valueInColumn3);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Giá trị số lượng không hợp lệ!",
+                    "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (valueInInt < 0) {
+            JOptionPane.showMessageDialog(this, "Giá trị số lượng không hợp lệ!",
+                    "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        MenuTable.repaint();
+
+        double tong = 0;
+        ProductService productService = new ProductService();
+
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            try {
+                valueInColumn3 = tableModel.getValueAt(i, 3).toString();
+                valueInInt = Integer.parseInt(valueInColumn3);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Giá trị số lượng không hợp lệ!",
+                        "Lỗi", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Product product = productService.FindProduct((int) tableModel.getValueAt(i, 0));
+            tong += valueInInt * product.getPrice();
+        }
+
+        SumMoneyNow.setText(String.valueOf(tong));
+    }//GEN-LAST:event_MenuTableMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -650,23 +721,18 @@ public class HomeUserJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddMoneyButton;
-    private javax.swing.JTextField ComputerNameTXT;
-    private javax.swing.JCheckBox Do1;
-    private javax.swing.JCheckBox Do2;
-    private javax.swing.JCheckBox Do3;
     private javax.swing.JButton Food;
     private javax.swing.JButton LogoutUserButton;
+    private javax.swing.JTable MenuTable;
     private javax.swing.JButton OderButton;
     private javax.swing.JDialog OderDialog;
     private javax.swing.JTextField PhoneUserTXT;
     private javax.swing.JDialog RechargeDailog;
+    private javax.swing.JButton Reload;
     private javax.swing.JButton SetUserButton;
-    private javax.swing.JCheckBox Uong1;
-    private javax.swing.JCheckBox Uong2;
-    private javax.swing.JCheckBox Uong3;
+    private javax.swing.JTextField SumMoneyNow;
     private javax.swing.JToggleButton UserButton;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -676,9 +742,8 @@ public class HomeUserJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lastTime;
     private javax.swing.JInternalFrame mainBoard;
     private javax.swing.JTextField moneyTXT;
