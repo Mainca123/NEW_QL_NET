@@ -6,10 +6,20 @@ import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.Computer.Status;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.example.DAO.Main.entityManager;
 
 public class ComputerService {
+
+    public List<Computer> findComputersByOrder() {
+        entityManager.clear();
+        String jpql = "SELECT c FROM Computer c JOIN c.user u JOIN A_Order o ON o.user = u";
+        TypedQuery<Computer> query = entityManager.createQuery(jpql, Computer.class);
+        return query.getResultList();
+    }
+
+
 
     public Computer findUserComputer(String phone) {
         entityManager.clear();

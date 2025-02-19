@@ -1836,7 +1836,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          <Component id="RefeshComputerButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="RefreshComputerButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -1856,7 +1856,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ShutDownComputerButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="72" max="32767" attributes="0"/>
-                          <Component id="RefeshComputerButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="RefreshComputerButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1915,7 +1915,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShutDownComputerButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="RefeshComputerButton">
+                <Component class="javax.swing.JButton" name="RefreshComputerButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="24" style="1"/>
@@ -1926,7 +1926,7 @@
                     <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RefeshComputerButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RefreshComputerButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1995,7 +1995,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="RefeshOderButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="RefreshOderButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -2008,7 +2008,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" pref="445" max="-2" attributes="0"/>
                           <EmptySpace pref="72" max="32767" attributes="0"/>
-                          <Component id="RefeshOderButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="RefreshOderButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2027,7 +2027,7 @@
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="2" rowCount="20">
-                            <Column editable="true" title="STT" type="java.lang.String">
+                            <Column editable="false" title="STT" type="java.lang.String">
                               <Data value="1"/>
                               <Data value="2"/>
                               <Data value="3"/>
@@ -2049,7 +2049,7 @@
                               <Data value="19"/>
                               <Data value="20"/>
                             </Column>
-                            <Column editable="true" title="V&#x1ecb; tr&#xed;" type="java.lang.String">
+                            <Column editable="false" title="V&#x1ecb; tr&#xed;" type="java.lang.String">
                               <Data value="MAY01"/>
                               <Data value="MAY03"/>
                               <Data value="MAY04"/>
@@ -2091,6 +2091,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TableOderMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2103,7 +2106,7 @@
                     <Property name="verticalAlignment" type="int" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="RefeshOderButton">
+                <Component class="javax.swing.JButton" name="RefreshOderButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
@@ -2113,6 +2116,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RefreshOderButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -2166,29 +2172,30 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="TableDetailOder">
+                    <Component class="javax.swing.JTable" name="TableDetailOrder">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="M&#xe3; h&#xe0;ng" type="java.lang.Object">
+                          <Table columnCount="5" rowCount="4">
+                            <Column editable="false" title="M&#xe3; chi ti&#x1ebf;t &#x111;&#x1a1;n" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; h&#xe0;ng" type="java.lang.Object">
                               <Data value="DA01"/>
                               <Data value="DA02"/>
                               <Data value="DU01"/>
                               <Data value="DU30"/>
                             </Column>
-                            <Column editable="true" title="T&#xea;n h&#xe0;ng" type="java.lang.Object">
+                            <Column editable="false" title="T&#xea;n h&#xe0;ng" type="java.lang.Object">
                               <Data value="M&#xec; t&#xf4;m &#xfa;p tr&#x1ee9;ng"/>
                               <Data value="B&#xe1;nh k&#x1eb9;p x&#xfa;c x&#xed;ch"/>
                               <Data value="Pesi"/>
                               <Data value="Cocacola"/>
                             </Column>
-                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object">
+                            <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object">
                               <Data value="2"/>
                               <Data value="1"/>
                               <Data value="5"/>
                               <Data value="6"/>
                             </Column>
-                            <Column editable="true" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object">
+                            <Column editable="false" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object">
                               <Data value="20 000"/>
                               <Data value="15 000"/>
                               <Data value="50 000"/>
@@ -2198,6 +2205,11 @@
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>

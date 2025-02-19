@@ -576,7 +576,7 @@ public class HomeUserJFrame extends javax.swing.JFrame {
                         "Lỗi",JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if(quantity <0 ) {
+            if(quantity > 0 ) {
                 Product product = productService.FindProduct(id);
                 OrderProduct orderProduct = new OrderProduct(aOrder, product, quantity);
                 oderProductService.AddOrder(orderProduct);

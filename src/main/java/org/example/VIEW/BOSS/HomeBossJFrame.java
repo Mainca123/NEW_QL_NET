@@ -10,17 +10,20 @@ import javax.swing.table.DefaultTableModel;
 
 import org.example.ENTITY.Computer.Computer;
 import org.example.ENTITY.Computer.Status;
+import org.example.ENTITY.Order.A_Order;
+import org.example.ENTITY.Order.OrderProduct;
 import org.example.ENTITY.Order.Product;
 import org.example.ENTITY.USER.Role;
 import org.example.ENTITY.USER.User;
-import org.example.SERVICE.ComputerService;
-import org.example.SERVICE.ProductService;
-import org.example.SERVICE.UserService;
+import org.example.SERVICE.*;
 import org.example.VIEW.TogetherSERVICE.HomeJFrame;
 import org.example.VIEW.TogetherSERVICE.SetInfoJFrame;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -157,17 +160,17 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         NameComputerTXT = new javax.swing.JTextField();
         DeleteComputerButton = new javax.swing.JButton();
         ShutDownComputerButton = new javax.swing.JButton();
-        RefeshComputerButton = new javax.swing.JButton();
+        RefreshComputerButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableOder = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
-        RefeshOderButton = new javax.swing.JButton();
+        RefreshOderButton = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        TableDetailOder = new javax.swing.JTable();
+        TableDetailOrder = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         SumMoney = new javax.swing.JTextField();
@@ -1238,12 +1241,12 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             }
         });
 
-        RefeshComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        RefeshComputerButton.setForeground(new java.awt.Color(0, 153, 51));
-        RefeshComputerButton.setText("Làm mới");
-        RefeshComputerButton.addActionListener(new java.awt.event.ActionListener() {
+        RefreshComputerButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        RefreshComputerButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefreshComputerButton.setText("Làm mới");
+        RefreshComputerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefeshComputerButtonActionPerformed(evt);
+                RefreshComputerButtonActionPerformed(evt);
             }
         });
 
@@ -1264,7 +1267,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(JpLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addComponent(RefeshComputerButton)
+                .addComponent(RefreshComputerButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JpLayout.setVerticalGroup(
@@ -1281,7 +1284,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ShutDownComputerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(RefeshComputerButton)
+                .addComponent(RefreshComputerButton)
                 .addContainerGap())
         );
 
@@ -1347,9 +1350,21 @@ public class HomeBossJFrame extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableOder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableOderMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(TableOder);
@@ -1358,9 +1373,14 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel11.setText("Hóa đơn");
         jLabel11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        RefeshOderButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        RefeshOderButton.setForeground(new java.awt.Color(0, 153, 51));
-        RefeshOderButton.setText("Làm mới");
+        RefreshOderButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RefreshOderButton.setForeground(new java.awt.Color(0, 153, 51));
+        RefreshOderButton.setText("Làm mới");
+        RefreshOderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshOderButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1374,7 +1394,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(RefeshOderButton)
+                .addComponent(RefreshOderButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -1385,7 +1405,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(RefeshOderButton)
+                .addComponent(RefreshOderButton)
                 .addGap(54, 54, 54))
         );
 
@@ -1394,18 +1414,26 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Chi tiết hóa đơn");
 
-        TableDetailOder.setModel(new javax.swing.table.DefaultTableModel(
+        TableDetailOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"DA01", "Mì tôm úp trứng", "2", "20 000"},
-                {"DA02", "Bánh kẹp xúc xích", "1", "15 000"},
-                {"DU01", "Pesi", "5", "50 000"},
-                {"DU30", "Cocacola", "6", "60 000"}
+                {null, "DA01", "Mì tôm úp trứng", "2", "20 000"},
+                {null, "DA02", "Bánh kẹp xúc xích", "1", "15 000"},
+                {null, "DU01", "Pesi", "5", "50 000"},
+                {null, "DU30", "Cocacola", "6", "60 000"}
             },
             new String [] {
-                "Mã hàng", "Tên hàng", "Số lượng", "Thành tiền"
+                "Mã chi tiết đơn", "Mã hàng", "Tên hàng", "Số lượng", "Thành tiền"
             }
-        ));
-        jScrollPane4.setViewportView(TableDetailOder);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(TableDetailOrder);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1734,9 +1762,34 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
     private void CompleteOderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteOderButtonActionPerformed
         // TODO add your handling code here:
+        OderProductService oderProductService = new OderProductService();
+        A_OrderService aOrderService = new A_OrderService();
+
+        Set<Integer> orderIdsToDelete = new HashSet<>();
+
+        DefaultTableModel tableModel = (DefaultTableModel) TableDetailOrder.getModel();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            int orderProductId = (int) tableModel.getValueAt(i, 0);
+            OrderProduct orderProduct = oderProductService.findOrderProduct(orderProductId);
+
+            if (orderProduct != null) {
+                orderIdsToDelete.add(orderProduct.getOrder().getId());
+                oderProductService.deleteOrderProduct(orderProduct);
+            }
+        }
+
+        for (Integer orderId : orderIdsToDelete) {
+            A_Order aOrder = aOrderService.findAOder(orderId);
+            if (aOrder != null) {
+                aOrderService.deleteAOrder(aOrder);
+            }
+        }
+
+        tableModel.setRowCount(0);
+
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
         JOptionPane.showMessageDialog(this, "Đã in hóa đơn",
-                "Thông báo phụ vụ thành công", JOptionPane.INFORMATION_MESSAGE, icon);
+                "Thông báo phục vụ thành công", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_CompleteOderButtonActionPerformed
 
     private void YesAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesAddUserButtonActionPerformed
@@ -1947,7 +2000,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DeleteComputerButtonActionPerformed
 
-    private void RefeshComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefeshComputerButtonActionPerformed
+    private void RefreshComputerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshComputerButtonActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) TableComuper.getModel();
         model.setRowCount(0); // Xóa toàn bộ dữ liệu nhưng giữ lại các cột
@@ -1961,7 +2014,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{computer.getName(), computer.getStatus().getDescription()});
         }
         JOptionPane.showMessageDialog(this,"Đã làm mới", "Thông báo",JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_RefeshComputerButtonActionPerformed
+    }//GEN-LAST:event_RefreshComputerButtonActionPerformed
 
     private void TableComuperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableComuperMouseClicked
         // TODO add your handling code here:
@@ -2173,6 +2226,60 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_YesAddMoneyButtonActionPerformed
 
+    private void RefreshOderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshOderButtonActionPerformed
+        // TODO add your handling code here:
+        ComputerService computerService = new ComputerService();
+        List<Computer> computers = computerService.findComputersByOrder();
+        DefaultTableModel tableModel = (DefaultTableModel) TableOder.getModel();
+        tableModel.setRowCount(0);
+        int count = 0;
+        if(computers != null){
+            for(Computer computer: computers){
+                count++;
+                tableModel.addRow(new Object[]{count, computer.getName()});
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,"Không có đơn hàng","Thông báo",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoTichXanh.png"));
+        JOptionPane.showMessageDialog(this, "Đã làm mới",
+                "Thông báo", JOptionPane.INFORMATION_MESSAGE, icon);
+        tableModel = (DefaultTableModel) TableDetailOrder.getModel();
+        tableModel.setRowCount(0);
+    }//GEN-LAST:event_RefreshOderButtonActionPerformed
+
+    private void TableOderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOderMouseClicked
+        // TODO add your handling code here:
+        int row = TableOder.getSelectedRow();
+        if(row != -1){
+            String nameComputer = TableOder.getValueAt(row,1).toString();
+            A_OrderService aOrderService = new A_OrderService();
+            ComputerService computerService =new ComputerService();
+            ArrayList<A_Order> aOrders = aOrderService.findOrder_ByPhone(
+                    computerService.findComputer(nameComputer).getUser().getPhone());
+            OderProductService oderProductService = new OderProductService();
+            List<OrderProduct> orderProducts = oderProductService.findOrderProductsWithDetails();;
+            DefaultTableModel tableModel = (DefaultTableModel) TableDetailOrder.getModel();
+            tableModel.setRowCount(0);
+            double tong = 0;
+            for(A_Order aOrder : aOrders)
+                for(OrderProduct orderProduct: orderProducts){
+                    if(orderProduct.getOrder().equals(aOrder)) {
+                        tableModel.addRow(new Object[]{
+                                orderProduct.getId(),
+                                orderProduct.getHang().getId(),
+                                orderProduct.getHang().getName(),
+                                orderProduct.getSoLuong(),
+                                orderProduct.getSoLuong() * orderProduct.getHang().getPrice()}
+                        );
+                        tong += orderProduct.getSoLuong() * orderProduct.getHang().getPrice();
+                    }
+                }
+            SumMoney.setText(String.valueOf(tong));
+        }
+    }//GEN-LAST:event_TableOderMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2250,9 +2357,9 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneAddTXT;
     private javax.swing.JTextField PhoneNow;
     private javax.swing.JTextField ProductID_TXT;
-    private javax.swing.JButton RefeshComputerButton;
-    private javax.swing.JButton RefeshOderButton;
     private javax.swing.JButton RefreshAcconutButton;
+    private javax.swing.JButton RefreshComputerButton;
+    private javax.swing.JButton RefreshOderButton;
     private javax.swing.JButton RefreshProductButton;
     private javax.swing.JButton SetAdminButton;
     private javax.swing.JDialog SetComputerDailog;
@@ -2267,7 +2374,7 @@ public class HomeBossJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField SumMoney;
     private javax.swing.JTable TableAccount;
     private javax.swing.JTable TableComuper;
-    private javax.swing.JTable TableDetailOder;
+    private javax.swing.JTable TableDetailOrder;
     private javax.swing.JTable TableOder;
     private javax.swing.JTable TableProduct;
     private javax.swing.JButton YesAddComputerButton;
