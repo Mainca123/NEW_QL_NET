@@ -1466,7 +1466,6 @@ public class HomeBossJFrame extends javax.swing.JFrame {
 
         SumMoney.setEditable(false);
         SumMoney.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        SumMoney.setText("145 000");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel14.setText("VND");
